@@ -47,7 +47,7 @@ export default function Home() {
         <h1>Innovia Partners</h1>
         <p className="mt-4 text-neutral-600 max-w-2xl text-lg">
           Typography, color palette, and design tokens for the Innovia Partners
-          website redesign. A premium management consultancy for architecture
+          website redesign. A management consultancy for architecture
           and AEC practices.
         </p>
       </div>
