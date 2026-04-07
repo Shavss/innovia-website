@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innovia Partners — All Color Palettes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Libre Franklin', system-ui, sans-serif;
+      background: #e8e4df;
+      color: #1c1917;
+      padding: 3rem 2rem 6rem;
+    }
+
+    .page-header {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+    }
+
+    .page-header h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 2.75rem;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .page-header p {
+      margin-top: 0.75rem;
+      color: #6e6762;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 60ch;
+    }
+
+    /* Sticky filter nav */
+    .filter-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      max-width: 1400px;
+      margin: 0 auto 3rem;
+      background: rgba(232, 228, 223, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1rem 0;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .filter-btn {
+      font-family: 'Libre Franklin', system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      background: #fff;
+      color: #514b47;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover { border-color: rgba(0,0,0,0.3); }
+    .filter-btn.active { background: #1c1917; color: #fff; border-color: #1c1917; }
+
+    /* Section groups */
+    .group {
+      max-width: 1400px;
+      margin: 0 auto 4rem;
+    }
+
+    .group-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(0,0,0,0.08);
+    }
+
+    .group-header h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    .group-header p {
+      font-size: 0.85rem;
+      color: #8e8680;
+      margin-top: 0.25rem;
+    }
+
+    .palettes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 1100px) {
+      .palettes { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 700px) {
+      .palettes { grid-template-columns: 1fr; }
+    }
+
+    .palette-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .palette-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .palette-hero { padding: 2.5rem 2rem 2rem; }
+
+    .palette-hero h3 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.35rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .palette-hero .mood {
+      font-size: 0.78rem;
+      opacity: 0.7;
+      line-height: 1.5;
+      margin-top: 0.5rem;
+    }
+
+    .palette-hero .label {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .swatches { padding: 0 1.5rem 1.5rem; }
+
+    .swatch-group-title {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ada69c;
+      margin: 1rem 0 0.4rem;
+    }
+
+    .swatch-row { display: flex; gap: 5px; }
+
+    .swatch {
+      flex: 1;
+      aspect-ratio: 1;
+      border-radius: 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: transform 0.15s ease;
+      cursor: default;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .swatch:hover {
+      transform: scale(1.15);
+      z-index: 2;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    .swatch .hex { font-size: 0.45rem; opacity: 0.8; margin-top: 2px; font-weight: 500; }
+
+    .preview-section {
+      margin: 1.25rem 1.5rem;
+      border-radius: 10px;
+      padding: 1.5rem 1.25rem;
+    }
+
+    .preview-section .eyebrow {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .preview-section h4 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .preview-section p {
+      font-size: 0.72rem;
+      line-height: 1.55;
+      opacity: 0.75;
+    }
+
+    .preview-section .btn {
+      display: inline-block;
+      margin-top: 0.85rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .preview-section .btn:hover { opacity: 0.85; }
+
+    .preview-light { border: 1px solid rgba(0,0,0,0.08); }
+
+    .preview-light .btn-outline {
+      display: inline-block;
+      margin-top: 0.85rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .preview-light .btn-outline:hover { opacity: 0.7; }
+
+    .footer-note {
+      max-width: 1400px;
+      margin: 2rem auto 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #ada69c;
+    }
+
+    /* Hidden state for filtering */
+    .group.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Innovia Partners — All Palettes</h1>
+    <p>Nine color directions for a premium AEC consultancy. Classic foundations, material-inspired, and blue explorations — all in one view.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All 9</button>
+    <button class="filter-btn" data-filter="classic">Classic (A–C)</button>
+    <button class="filter-btn" data-filter="material">Material (D–F)</button>
+    <button class="filter-btn" data-filter="blue">Blue (G–I)</button>
+  </div>
+
+  <!-- ===================== GROUP 1: Classic ===================== -->
+  <div class="group" data-group="classic">
+    <div class="group-header">
+      <h2>Classic Foundations</h2>
+      <p>Traditional premium palettes — navy, forest, copper.</p>
+    </div>
+    <div class="palettes">
+
+      <!-- A: Ink & Stone -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#102A43; color:#FAF8F5;">
+          <span class="label" style="background:#8B2635; color:#fff;">A</span>
+          <h3>Ink & Stone</h3>
+          <p class="mood">Traditional prestige. Dark navy with warm sandstone and a burgundy wax-seal accent.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#102A43; color:#fff;"><span>900</span><span class="hex">#102A43</span></div>
+            <div class="swatch" style="background:#334E68; color:#fff;"><span>700</span><span class="hex">#334E68</span></div>
+            <div class="swatch" style="background:#627D98; color:#fff;"><span>500</span><span class="hex">#627D98</span></div>
+            <div class="swatch" style="background:#9FB3C8; color:#1c1917;"><span>300</span><span class="hex">#9FB3C8</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#8B2635; color:#fff;"><span>600</span><span class="hex">#8B2635</span></div>
+            <div class="swatch" style="background:#B85C58; color:#fff;"><span>400</span><span class="hex">#B85C58</span></div>
+            <div class="swatch" style="background:#D4817E; color:#1c1917;"><span>300</span><span class="hex">#D4817E</span></div>
+            <div class="swatch" style="background:#F5D5D5; color:#1c1917;"><span>100</span><span class="hex">#F5D5D5</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1C1917; color:#fff;"><span>900</span><span class="hex">#1C1917</span></div>
+            <div class="swatch" style="background:#6E6762; color:#fff;"><span>600</span><span class="hex">#6E6762</span></div>
+            <div class="swatch" style="background:#E2DCD4; color:#1c1917;"><span>200</span><span class="hex">#E2DCD4</span></div>
+            <div class="swatch" style="background:#FAF8F5; color:#1c1917;"><span>50</span><span class="hex">#FAF8F5</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#102A43; color:#FAF8F5;">
+          <p class="eyebrow" style="color:#B85C58;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#9FB3C8;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#8B2635; color:#fff;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#FAF8F5; color:#102A43;">
+          <p class="eyebrow" style="color:#8B2635;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#6E6762;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #102A43; color:#102A43;">Learn More</span>
+        </div>
+      </div>
+
+      <!-- B: Charcoal & Copper -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#1A1A2E; color:#F7F5F2;">
+          <span class="label" style="background:#B07245; color:#fff;">B</span>
+          <h3>Charcoal & Copper</h3>
+          <p class="mood">Editorial & contemporary. Near-black charcoal with oxidized copper warmth.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1A1A2E; color:#fff;"><span>900</span><span class="hex">#1A1A2E</span></div>
+            <div class="swatch" style="background:#2D2D44; color:#fff;"><span>700</span><span class="hex">#2D2D44</span></div>
+            <div class="swatch" style="background:#4A4A64; color:#fff;"><span>500</span><span class="hex">#4A4A64</span></div>
+            <div class="swatch" style="background:#8A8A9E; color:#1c1917;"><span>300</span><span class="hex">#8A8A9E</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#8A5530; color:#fff;"><span>700</span><span class="hex">#8A5530</span></div>
+            <div class="swatch" style="background:#B07245; color:#fff;"><span>500</span><span class="hex">#B07245</span></div>
+            <div class="swatch" style="background:#D4976A; color:#1c1917;"><span>300</span><span class="hex">#D4976A</span></div>
+            <div class="swatch" style="background:#F0DCC8; color:#1c1917;"><span>100</span><span class="hex">#F0DCC8</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1E1C1A; color:#fff;"><span>900</span><span class="hex">#1E1C1A</span></div>
+            <div class="swatch" style="background:#7A7267; color:#fff;"><span>600</span><span class="hex">#7A7267</span></div>
+            <div class="swatch" style="background:#DDD8D0; color:#1c1917;"><span>200</span><span class="hex">#DDD8D0</span></div>
+            <div class="swatch" style="background:#F7F5F2; color:#1c1917;"><span>50</span><span class="hex">#F7F5F2</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#1A1A2E; color:#F7F5F2;">
+          <p class="eyebrow" style="color:#D4976A;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#8A8A9E;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#B07245; color:#fff;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#F7F5F2; color:#1A1A2E;">
+          <p class="eyebrow" style="color:#8A5530;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#7A7267;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #1A1A2E; color:#1A1A2E;">Learn More</span>
+        </div>
+      </div>
+
+      <!-- C: Forest & Brass -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#0F2419; color:#F8F7F4;">
+          <span class="label" style="background:#B8943E; color:#fff;">C</span>
+          <h3>Forest & Brass</h3>
+          <p class="mood">Distinctive & confident. Deep evergreen with aged brass — instantly recognizable.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#0F2419; color:#fff;"><span>900</span><span class="hex">#0F2419</span></div>
+            <div class="swatch" style="background:#1E3A2B; color:#fff;"><span>700</span><span class="hex">#1E3A2B</span></div>
+            <div class="swatch" style="background:#3D6B50; color:#fff;"><span>500</span><span class="hex">#3D6B50</span></div>
+            <div class="swatch" style="background:#7FA890; color:#1c1917;"><span>300</span><span class="hex">#7FA890</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#8A6E2A; color:#fff;"><span>700</span><span class="hex">#8A6E2A</span></div>
+            <div class="swatch" style="background:#B8943E; color:#fff;"><span>500</span><span class="hex">#B8943E</span></div>
+            <div class="swatch" style="background:#D4B15E; color:#1c1917;"><span>300</span><span class="hex">#D4B15E</span></div>
+            <div class="swatch" style="background:#F0E4C0; color:#1c1917;"><span>100</span><span class="hex">#F0E4C0</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1B1A17; color:#fff;"><span>900</span><span class="hex">#1B1A17</span></div>
+            <div class="swatch" style="background:#6B6960; color:#fff;"><span>600</span><span class="hex">#6B6960</span></div>
+            <div class="swatch" style="background:#E0DDD6; color:#1c1917;"><span>200</span><span class="hex">#E0DDD6</span></div>
+            <div class="swatch" style="background:#F8F7F4; color:#1c1917;"><span>50</span><span class="hex">#F8F7F4</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#0F2419; color:#F8F7F4;">
+          <p class="eyebrow" style="color:#D4B15E;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#7FA890;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#B8943E; color:#fff;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#F8F7F4; color:#0F2419;">
+          <p class="eyebrow" style="color:#8A6E2A;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#6B6960;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #0F2419; color:#0F2419;">Learn More</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== GROUP 2: Material ===================== -->
+  <div class="group" data-group="material">
+    <div class="group-header">
+      <h2>Material-Inspired</h2>
+      <p>Palettes drawn from architectural materials — concrete, blueprint paper, fired clay.</p>
+    </div>
+    <div class="palettes">
+
+      <!-- D: Concrete & Vermillion -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#2C2C2C; color:#F2F0ED;">
+          <span class="label" style="background:#C4452D; color:#fff;">D</span>
+          <h3>Concrete & Vermillion</h3>
+          <p class="mood">Brutalist restraint meets a single bold signal. Raw concrete with an architect's red pencil.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1A1A1A; color:#fff;"><span>950</span><span class="hex">#1A1A1A</span></div>
+            <div class="swatch" style="background:#2C2C2C; color:#fff;"><span>800</span><span class="hex">#2C2C2C</span></div>
+            <div class="swatch" style="background:#4A4A4A; color:#fff;"><span>600</span><span class="hex">#4A4A4A</span></div>
+            <div class="swatch" style="background:#8C8C8C; color:#1a1a1a;"><span>400</span><span class="hex">#8C8C8C</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#8B2E1A; color:#fff;"><span>800</span><span class="hex">#8B2E1A</span></div>
+            <div class="swatch" style="background:#C4452D; color:#fff;"><span>600</span><span class="hex">#C4452D</span></div>
+            <div class="swatch" style="background:#E07A62; color:#1a1a1a;"><span>400</span><span class="hex">#E07A62</span></div>
+            <div class="swatch" style="background:#F5CFC3; color:#1a1a1a;"><span>100</span><span class="hex">#F5CFC3</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#262421; color:#fff;"><span>900</span><span class="hex">#262421</span></div>
+            <div class="swatch" style="background:#78746E; color:#fff;"><span>500</span><span class="hex">#78746E</span></div>
+            <div class="swatch" style="background:#D6D2CC; color:#1a1a1a;"><span>200</span><span class="hex">#D6D2CC</span></div>
+            <div class="swatch" style="background:#F2F0ED; color:#1a1a1a;"><span>50</span><span class="hex">#F2F0ED</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#1A1A1A; color:#F2F0ED;">
+          <p class="eyebrow" style="color:#E07A62;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#8C8C8C;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#C4452D; color:#fff;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#F2F0ED; color:#1A1A1A;">
+          <p class="eyebrow" style="color:#C4452D;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#78746E;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #C4452D; color:#C4452D;">Learn More</span>
+        </div>
+      </div>
+
+      <!-- E: Blueprint & Amber -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#1B2D45; color:#F0EDE8;">
+          <span class="label" style="background:#D49A2A; color:#1B2D45;">E</span>
+          <h3>Blueprint & Amber</h3>
+          <p class="mood">Drafting-table precision. Deep blueprint blue with a warm amber that nods to drawing-room lamplight.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#0E1A2D; color:#fff;"><span>950</span><span class="hex">#0E1A2D</span></div>
+            <div class="swatch" style="background:#1B2D45; color:#fff;"><span>800</span><span class="hex">#1B2D45</span></div>
+            <div class="swatch" style="background:#34506A; color:#fff;"><span>600</span><span class="hex">#34506A</span></div>
+            <div class="swatch" style="background:#7B9BB5; color:#1a1a1a;"><span>300</span><span class="hex">#7B9BB5</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#9A6F15; color:#fff;"><span>700</span><span class="hex">#9A6F15</span></div>
+            <div class="swatch" style="background:#D49A2A; color:#1a1a1a;"><span>500</span><span class="hex">#D49A2A</span></div>
+            <div class="swatch" style="background:#E8BE5E; color:#1a1a1a;"><span>300</span><span class="hex">#E8BE5E</span></div>
+            <div class="swatch" style="background:#F7EACC; color:#1a1a1a;"><span>100</span><span class="hex">#F7EACC</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1F1D1A; color:#fff;"><span>900</span><span class="hex">#1F1D1A</span></div>
+            <div class="swatch" style="background:#6D675E; color:#fff;"><span>600</span><span class="hex">#6D675E</span></div>
+            <div class="swatch" style="background:#D8D3CB; color:#1a1a1a;"><span>200</span><span class="hex">#D8D3CB</span></div>
+            <div class="swatch" style="background:#F0EDE8; color:#1a1a1a;"><span>50</span><span class="hex">#F0EDE8</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#0E1A2D; color:#F0EDE8;">
+          <p class="eyebrow" style="color:#E8BE5E;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#7B9BB5;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#D49A2A; color:#0E1A2D;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#F0EDE8; color:#1B2D45;">
+          <p class="eyebrow" style="color:#9A6F15;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#6D675E;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #1B2D45; color:#1B2D45;">Learn More</span>
+        </div>
+      </div>
+
+      <!-- F: Slate & Terracotta -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#2A2D2E; color:#F4F1EC;">
+          <span class="label" style="background:#C67B5C; color:#fff;">F</span>
+          <h3>Slate & Terracotta</h3>
+          <p class="mood">Material honesty. Cool architectural slate with fired-earth terracotta warmth.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#181B1C; color:#fff;"><span>950</span><span class="hex">#181B1C</span></div>
+            <div class="swatch" style="background:#2A2D2E; color:#fff;"><span>800</span><span class="hex">#2A2D2E</span></div>
+            <div class="swatch" style="background:#4E5456; color:#fff;"><span>600</span><span class="hex">#4E5456</span></div>
+            <div class="swatch" style="background:#94999B; color:#1a1a1a;"><span>350</span><span class="hex">#94999B</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#8E4F35; color:#fff;"><span>700</span><span class="hex">#8E4F35</span></div>
+            <div class="swatch" style="background:#C67B5C; color:#fff;"><span>500</span><span class="hex">#C67B5C</span></div>
+            <div class="swatch" style="background:#DDA88E; color:#1a1a1a;"><span>300</span><span class="hex">#DDA88E</span></div>
+            <div class="swatch" style="background:#F5E0D3; color:#1a1a1a;"><span>100</span><span class="hex">#F5E0D3</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#22201E; color:#fff;"><span>900</span><span class="hex">#22201E</span></div>
+            <div class="swatch" style="background:#716C66; color:#fff;"><span>550</span><span class="hex">#716C66</span></div>
+            <div class="swatch" style="background:#DDD9D2; color:#1a1a1a;"><span>200</span><span class="hex">#DDD9D2</span></div>
+            <div class="swatch" style="background:#F4F1EC; color:#1a1a1a;"><span>50</span><span class="hex">#F4F1EC</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#181B1C; color:#F4F1EC;">
+          <p class="eyebrow" style="color:#DDA88E;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#94999B;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#C67B5C; color:#fff;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#F4F1EC; color:#2A2D2E;">
+          <p class="eyebrow" style="color:#8E4F35;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#716C66;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #2A2D2E; color:#2A2D2E;">Learn More</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== GROUP 3: Blue ===================== -->
+  <div class="group" data-group="blue">
+    <div class="group-header">
+      <h2>Blue Explorations</h2>
+      <p>Deep navy to inky indigo — blue-dominant palettes with distinct accent pairings.</p>
+    </div>
+    <div class="palettes">
+
+      <!-- G: Midnight & Burnished Gold -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#0B1628; color:#EDE9E3;">
+          <span class="label" style="background:#C9A84C; color:#0B1628;">G</span>
+          <h3>Midnight & Burnished Gold</h3>
+          <p class="mood">Near-black navy with restrained gold foil. Luxury without loudness.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#060D18; color:#fff;"><span>950</span><span class="hex">#060D18</span></div>
+            <div class="swatch" style="background:#0B1628; color:#fff;"><span>900</span><span class="hex">#0B1628</span></div>
+            <div class="swatch" style="background:#152742; color:#fff;"><span>800</span><span class="hex">#152742</span></div>
+            <div class="swatch" style="background:#1E3A5F; color:#fff;"><span>700</span><span class="hex">#1E3A5F</span></div>
+            <div class="swatch" style="background:#2E5A8A; color:#fff;"><span>500</span><span class="hex">#2E5A8A</span></div>
+            <div class="swatch" style="background:#7EA3C8; color:#0B1628;"><span>300</span><span class="hex">#7EA3C8</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#8A7230; color:#fff;"><span>700</span><span class="hex">#8A7230</span></div>
+            <div class="swatch" style="background:#C9A84C; color:#0B1628;"><span>500</span><span class="hex">#C9A84C</span></div>
+            <div class="swatch" style="background:#E0C876; color:#0B1628;"><span>300</span><span class="hex">#E0C876</span></div>
+            <div class="swatch" style="background:#F5EDDA; color:#0B1628;"><span>100</span><span class="hex">#F5EDDA</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1A1816; color:#fff;"><span>900</span><span class="hex">#1A1816</span></div>
+            <div class="swatch" style="background:#6B665E; color:#fff;"><span>600</span><span class="hex">#6B665E</span></div>
+            <div class="swatch" style="background:#D5D1CA; color:#1a1a1a;"><span>200</span><span class="hex">#D5D1CA</span></div>
+            <div class="swatch" style="background:#EDE9E3; color:#1a1a1a;"><span>50</span><span class="hex">#EDE9E3</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#0B1628; color:#EDE9E3;">
+          <p class="eyebrow" style="color:#E0C876;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#7EA3C8;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#C9A84C; color:#0B1628;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#EDE9E3; color:#0B1628;">
+          <p class="eyebrow" style="color:#8A7230;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#6B665E;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #0B1628; color:#0B1628;">Learn More</span>
+        </div>
+      </div>
+
+      <!-- H: Steel Blue & Coral -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#1C3144; color:#F1EFEB;">
+          <span class="label" style="background:#D96B4E; color:#fff;">H</span>
+          <h3>Steel Blue & Coral</h3>
+          <p class="mood">Structural blue-steel with a living coral accent. Cold precision warmed by a human pulse.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#0D1B28; color:#fff;"><span>950</span><span class="hex">#0D1B28</span></div>
+            <div class="swatch" style="background:#1C3144; color:#fff;"><span>800</span><span class="hex">#1C3144</span></div>
+            <div class="swatch" style="background:#2B4A62; color:#fff;"><span>700</span><span class="hex">#2B4A62</span></div>
+            <div class="swatch" style="background:#3E6580; color:#fff;"><span>600</span><span class="hex">#3E6580</span></div>
+            <div class="swatch" style="background:#6A94AE; color:#0D1B28;"><span>400</span><span class="hex">#6A94AE</span></div>
+            <div class="swatch" style="background:#A3C1D4; color:#0D1B28;"><span>250</span><span class="hex">#A3C1D4</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#A14432; color:#fff;"><span>700</span><span class="hex">#A14432</span></div>
+            <div class="swatch" style="background:#D96B4E; color:#fff;"><span>500</span><span class="hex">#D96B4E</span></div>
+            <div class="swatch" style="background:#E89B84; color:#1a1a1a;"><span>300</span><span class="hex">#E89B84</span></div>
+            <div class="swatch" style="background:#F8DDD3; color:#1a1a1a;"><span>100</span><span class="hex">#F8DDD3</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1E1C19; color:#fff;"><span>900</span><span class="hex">#1E1C19</span></div>
+            <div class="swatch" style="background:#746E66; color:#fff;"><span>550</span><span class="hex">#746E66</span></div>
+            <div class="swatch" style="background:#DAD6CF; color:#1a1a1a;"><span>200</span><span class="hex">#DAD6CF</span></div>
+            <div class="swatch" style="background:#F1EFEB; color:#1a1a1a;"><span>50</span><span class="hex">#F1EFEB</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#0D1B28; color:#F1EFEB;">
+          <p class="eyebrow" style="color:#E89B84;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#6A94AE;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#D96B4E; color:#fff;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#F1EFEB; color:#1C3144;">
+          <p class="eyebrow" style="color:#A14432;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#746E66;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #1C3144; color:#1C3144;">Learn More</span>
+        </div>
+      </div>
+
+      <!-- I: Indigo Ink & Sage -->
+      <div class="palette-card">
+        <div class="palette-hero" style="background:#191D3A; color:#F0EEE9;">
+          <span class="label" style="background:#7C9A82; color:#191D3A;">I</span>
+          <h3>Indigo Ink & Sage</h3>
+          <p class="mood">Inky blue-violet depth with muted sage green. Contemplative and unexpected.</p>
+        </div>
+        <div class="swatches">
+          <p class="swatch-group-title">Primary</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#0C0F22; color:#fff;"><span>950</span><span class="hex">#0C0F22</span></div>
+            <div class="swatch" style="background:#191D3A; color:#fff;"><span>900</span><span class="hex">#191D3A</span></div>
+            <div class="swatch" style="background:#272D54; color:#fff;"><span>800</span><span class="hex">#272D54</span></div>
+            <div class="swatch" style="background:#3A4270; color:#fff;"><span>700</span><span class="hex">#3A4270</span></div>
+            <div class="swatch" style="background:#5C6494; color:#fff;"><span>500</span><span class="hex">#5C6494</span></div>
+            <div class="swatch" style="background:#9DA2C0; color:#191D3A;"><span>300</span><span class="hex">#9DA2C0</span></div>
+          </div>
+          <p class="swatch-group-title">Accent</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#4E6E54; color:#fff;"><span>700</span><span class="hex">#4E6E54</span></div>
+            <div class="swatch" style="background:#7C9A82; color:#191D3A;"><span>500</span><span class="hex">#7C9A82</span></div>
+            <div class="swatch" style="background:#A8C2AD; color:#191D3A;"><span>300</span><span class="hex">#A8C2AD</span></div>
+            <div class="swatch" style="background:#DDE8DF; color:#191D3A;"><span>100</span><span class="hex">#DDE8DF</span></div>
+          </div>
+          <p class="swatch-group-title">Neutral</p>
+          <div class="swatch-row">
+            <div class="swatch" style="background:#1B1918; color:#fff;"><span>900</span><span class="hex">#1B1918</span></div>
+            <div class="swatch" style="background:#6D6963; color:#fff;"><span>600</span><span class="hex">#6D6963</span></div>
+            <div class="swatch" style="background:#D7D3CC; color:#1a1a1a;"><span>200</span><span class="hex">#D7D3CC</span></div>
+            <div class="swatch" style="background:#F0EEE9; color:#1a1a1a;"><span>50</span><span class="hex">#F0EEE9</span></div>
+          </div>
+        </div>
+        <div class="preview-section" style="background:#0C0F22; color:#F0EEE9;">
+          <p class="eyebrow" style="color:#A8C2AD;">Case Study</p>
+          <h4>Practice Transformation</h4>
+          <p style="color:#9DA2C0;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <span class="btn" style="background:#7C9A82; color:#0C0F22;">Read More</span>
+        </div>
+        <div class="preview-section preview-light" style="background:#F0EEE9; color:#191D3A;">
+          <p class="eyebrow" style="color:#4E6E54;">Services</p>
+          <h4>Strategic Growth Planning</h4>
+          <p style="color:#6D6963;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <span class="btn-outline" style="border: 1.5px solid #191D3A; color:#191D3A;">Learn More</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="footer-note">9 palette directions for Innovia Partners. Hover swatches to inspect hex values. Use filters above to focus on a group.</p>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const groups = document.querySelectorAll('.group');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        groups.forEach(g => {
+          if (filter === 'all' || g.dataset.group === filter) {
+            g.classList.remove('hidden');
+          } else {
+            g.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

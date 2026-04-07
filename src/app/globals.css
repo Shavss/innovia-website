@@ -1,26 +1,194 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Register color names so Tailwind generates utility classes.
+     Values are var() references — actual values live in :root below.
+     This ensures runtime theme switching works (no inlined hex). */
 
-@theme inline {
+  /* Fonts */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+
+  /* Primary */
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+
+  /* Accent */
+  --color-accent-50: var(--accent-50);
+  --color-accent-100: var(--accent-100);
+  --color-accent-200: var(--accent-200);
+  --color-accent-300: var(--accent-300);
+  --color-accent-400: var(--accent-400);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-700: var(--accent-700);
+  --color-accent-800: var(--accent-800);
+  --color-accent-900: var(--accent-900);
+  --color-accent-950: var(--accent-950);
+
+  /* Neutral */
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+
+  /* Semantic surfaces */
+  --color-surface-light: var(--surface-light);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-card: var(--surface-card);
+
+  /* Background & foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Spacing tokens */
+  --spacing-section-y: var(--section-y);
+  --spacing-container-x: var(--container-x);
+
+  /* Container */
+  --container-max-width-lg: 1200px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Actual color values — runtime-swappable via ThemeSwitcher */
+:root {
+  --background: #faf8f5;
+  --foreground: #1c1917;
+
+  /* Primary — deep navy */
+  --primary-50: #f0f4f8;
+  --primary-100: #d9e2ec;
+  --primary-200: #bcccdc;
+  --primary-300: #9fb3c8;
+  --primary-400: #829ab1;
+  --primary-500: #627d98;
+  --primary-600: #486581;
+  --primary-700: #334e68;
+  --primary-800: #243b53;
+  --primary-900: #102a43;
+  --primary-950: #0a1929;
+
+  /* Accent — muted burgundy */
+  --accent-50: #fdf2f2;
+  --accent-100: #f5d5d5;
+  --accent-200: #e8acac;
+  --accent-300: #d4817e;
+  --accent-400: #b85c58;
+  --accent-500: #9b3b38;
+  --accent-600: #8b2635;
+  --accent-700: #741e2d;
+  --accent-800: #5c1824;
+  --accent-900: #45121b;
+  --accent-950: #2d0b12;
+
+  /* Neutral — warm grays */
+  --neutral-50: #faf8f5;
+  --neutral-100: #f0ece7;
+  --neutral-200: #e2dcd4;
+  --neutral-300: #cdc4b9;
+  --neutral-400: #ada69c;
+  --neutral-500: #8e8680;
+  --neutral-600: #6e6762;
+  --neutral-700: #514b47;
+  --neutral-800: #363230;
+  --neutral-900: #1c1917;
+  --neutral-950: #0f0e0d;
+
+  /* Surfaces */
+  --surface-light: #faf8f5;
+  --surface-dark: #102a43;
+  --surface-card: #ffffff;
+
+  /* Spacing */
+  --section-y: 3rem;
+  --container-x: 1.25rem;
+}
+
+@media (min-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --section-y: 5rem;
+    --container-x: 2rem;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Type scale */
+@layer base {
+  h1 {
+    font-family: var(--font-heading), ui-serif, Georgia, serif;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-family: var(--font-heading), ui-serif, Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-family: var(--font-heading), ui-serif, Georgia, serif;
+    font-weight: 400;
+    line-height: 1.2;
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-family: var(--font-heading), ui-serif, Georgia, serif;
+    font-weight: 400;
+    line-height: 1.25;
+    font-size: 1.125rem;
+  }
+
+  p {
+    line-height: 1.625;
+  }
+
+  small {
+    font-size: 0.875rem;
+  }
+
+  /* Desktop type scale */
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+    }
+  }
 }
