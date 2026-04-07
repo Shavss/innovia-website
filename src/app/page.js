@@ -18,7 +18,7 @@ function ColorSwatch({ color, step }) {
     <div
       className="rounded-lg p-4 text-sm font-medium"
       style={{
-        backgroundColor: `var(--color-${color}-${step})`,
+        backgroundColor: `var(--${color}-${step})`,  // ← --primary-50, not --color-primary-50
         color: step >= 500 ? '#fff' : 'var(--foreground)',
       }}
     >

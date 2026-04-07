@@ -6,7 +6,7 @@ Management consultancy website for architecture and AEC practices. Phase 1: fron
 
 - Next.js 14+ (App Router, NOT Pages Router)
 - JavaScript (JSX) — no TypeScript
-- Tailwind CSS for styling
+- Tailwind CSS **v4** for styling
 - Framer Motion for animations
 - Lucide React for icons
 - Deployed on Vercel
@@ -44,9 +44,62 @@ Management consultancy website for architecture and AEC practices. Phase 1: fron
 ## Design Direction
 
 - Premium, sophisticated consultancy aesthetic. Not corporate-generic, not startup-flashy.
-- Serif headings (DM Serif Display) + sans-serif body (Inter).
-- Dark navy, warm neutrals, muted red/burgundy accent.
+- Serif headings  + sans-serif body.
 - Animations should be subtle and intentional: fade-in-up on scroll, gentle hover states. Nothing flashy.
+
+## Tailwind CSS v4 Patterns
+
+This project uses **Tailwind CSS v4** (`tailwindcss@^4`), which differs significantly from v3.
+
+
+### Configuration
+
+- There is **no `tailwind.config.js`**. All theme configuration lives in `src/app/globals.css` inside an `@theme` block.
+- The entry point is `@import "tailwindcss";` at the top of `globals.css` (not `@tailwind base/components/utilities`).
+- PostCSS is handled via `@tailwindcss/postcss`.
+
+### @theme — Fixed Colour Scheme (Current Approach)
+
+The project uses a **fixed colour scheme** with hex values defined directly in `@theme`. This is the standard, simple Tailwind v4 approach:
+
+```css
+@theme {
+  --color-primary-500: #627d98;
+  --color-accent-600: #8b2635;
+  --color-neutral-200: #e2dcd4;
+}
+```
+
+Tailwind generates utility classes (`bg-primary-500`, `text-accent-600` etc.) from these tokens at build time.
+
+### Using Colour Tokens in Components
+
+**Always use Tailwind utility classes** — never inline `style` with `var(--color-*)`:
+
+```jsx
+/* ✅ Correct */
+<div className="bg-primary-500 text-white" />
+
+/* ❌ Wrong — var(--color-primary-500) does NOT exist as a standalone
+   CSS custom property on :root. It only lives inside Tailwind's generated
+   utility classes and will resolve to nothing in an inline style. */
+<div style={{ backgroundColor: 'var(--color-primary-500)' }} />
+```
+
+If you genuinely need a colour value in an inline `style` (e.g. dynamic/computed colours), reference the raw `:root` variable instead:
+
+```jsx
+/* ✅ Correct for inline style — references the actual :root variable */
+<div style={{ backgroundColor: 'var(--primary-500)' }} />
+```
+
+This requires the raw variable to also be defined on `:root` separately from `@theme`.
+
+### No tailwind.config.js
+
+Do not create or reference `tailwind.config.js`. To extend the theme (new colour, spacing token etc.), add it to the `@theme` block in `globals.css`.
+
+Install the **Tailwind CSS IntelliSense** extension (`bradlc.vscode-tailwindcss`) for proper v4 autocomplete and hover previews.
 
 ## Pages
 
