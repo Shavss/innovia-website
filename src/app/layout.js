@@ -9,6 +9,9 @@ export const metadata = {
 
 const isDev = process.env.NODE_ENV === 'development';
 
+const showSwitcher = process.env.NODE_ENV === 'development' 
+  || process.env.VERCEL_ENV === 'preview';
+  
 export default function RootLayout({ children }) {
   return (
     <html
@@ -17,7 +20,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col font-body">
         {children}
-        {isDev && <ThemeSwitcher />}
+        {showSwitcher && <ThemeSwitcher />}
       </body>
     </html>
   );
