@@ -6,12 +6,17 @@
   <title>Innovia Partners — All Color Palettes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Franklin:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Lora:wght@400;500;600;700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --heading-font: 'DM Serif Display', Georgia, serif;
+      --body-font: 'Libre Franklin', system-ui, sans-serif;
+    }
+
     body {
-      font-family: 'Libre Franklin', system-ui, sans-serif;
+      font-family: var(--body-font);
       background: #e8e4df;
       color: #1c1917;
       padding: 3rem 2rem 6rem;
@@ -258,13 +263,150 @@
 
     /* Hidden state for filtering */
     .group.hidden { display: none; }
+
+    /* ========== Font Pair Switcher ========== */
+    .font-section {
+      max-width: 1400px;
+      margin: 0 auto 3rem;
+    }
+
+    .font-section-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(0,0,0,0.08);
+    }
+
+    .font-section-header h2 {
+      font-family: var(--heading-font);
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    .font-section-header p {
+      font-size: 0.85rem;
+      color: #8e8680;
+      margin-top: 0.25rem;
+    }
+
+    .font-pairs-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 1100px) {
+      .font-pairs-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 700px) {
+      .font-pairs-grid { grid-template-columns: 1fr; }
+    }
+
+    .font-pair-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, outline-color 0.2s ease;
+      outline: 2.5px solid transparent;
+      outline-offset: -2.5px;
+      position: relative;
+    }
+
+    .font-pair-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .font-pair-card.active {
+      outline-color: #1c1917;
+    }
+
+    .font-pair-card.active::after {
+      content: 'ACTIVE';
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      background: #1c1917;
+      color: #fff;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .font-pair-card .pair-number {
+      display: inline-block;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+      color: #6e6762;
+      margin-bottom: 0.5rem;
+    }
+
+    .font-pair-card .pair-content {
+      padding: 1.5rem 1.25rem 1.25rem;
+    }
+
+    .font-pair-card .pair-name {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #6e6762;
+      margin-bottom: 0.75rem;
+    }
+
+    .font-pair-card .pair-heading-preview {
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #1c1917;
+      margin-bottom: 0.5rem;
+    }
+
+    .font-pair-card .pair-body-preview {
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: #6e6762;
+    }
+
+    .font-pair-card .pair-meta {
+      padding: 0.75rem 1.25rem;
+      background: #faf8f5;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .font-pair-card .pair-meta span {
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: #ada69c;
+      letter-spacing: 0.02em;
+    }
+
+    .font-pair-card .pair-mood {
+      font-size: 0.6rem;
+      font-style: italic;
+      color: #ada69c;
+      padding: 0 1.25rem 1rem;
+    }
   </style>
 </head>
 <body>
 
   <div class="page-header">
-    <h1>Innovia Partners — All Palettes</h1>
-    <p>Nine color directions for a premium AEC consultancy. Classic foundations, material-inspired, and blue explorations — all in one view.</p>
+    <h1>Font and Colour Palettes</h1>
+    <p>Five fonts and nine color directions for Innovia Partners.</p>
+    <p style="margin-top: 1rem; font-size: 0.88rem; line-height: 1.7; max-width: 72ch;">All palettes are designed to meet WCAG 2.2(Web Content Accessibility Guidelines) contrast requirements. It's an internationally recognised standard published by the W3C. Primary text on background combinations target a minimum 4.5 : 1 contrast ratio (AA level for normal text), and large headings maintain at least 3 : 1 (AA level for large text). Accent colours are paired with light or dark surfaces to preserve legibility at every scale. These thresholds ensure readability for users with low vision or colour deficiencies and align with accessibility legislation including the European Accessibility Act (EAA), US Section 508, and UK Equality Act 2010.</p>
   </div>
 
   <div class="filter-bar">
@@ -274,11 +416,97 @@
     <button class="filter-btn" data-filter="blue">Blue (G–I)</button>
   </div>
 
+  <!-- ===================== FONT PAIR SHOWCASE ===================== -->
+  <div class="font-section">
+    <div class="font-section-header">
+      <h2>Typography Pairings</h2>
+      <p>Five font combinations. Click a pair to apply it across all palette previews above.</p>
+    </div>
+    <div class="font-pairs-grid">
+
+      <!-- Pair 1 -->
+      <div class="font-pair-card active" data-heading="'DM Serif Display', Georgia, serif" data-body="'Libre Franklin', system-ui, sans-serif" data-pair="1">
+        <div class="pair-content">
+          <span class="pair-number">Pair 1</span>
+          <div class="pair-name">DM Serif Display + Libre Franklin</div>
+          <div class="pair-heading-preview" style="font-family: 'DM Serif Display', Georgia, serif;">Vision and Results.</div>
+          <div class="pair-body-preview" style="font-family: 'Libre Franklin', system-ui, sans-serif;">We help our clients achieve their goals and meet complex challenges: day-to-day operations and long-term strategy.</div>
+        </div>
+        <p class="pair-mood">Classic editorial warmth. Authority without stiffness.</p>
+        <div class="pair-meta">
+          <span>Heading: DM Serif Display</span>
+          <span>Body: Libre Franklin</span>
+        </div>
+      </div>
+
+      <!-- Pair 2 -->
+      <div class="font-pair-card" data-heading="'Playfair Display', Georgia, serif" data-body="'Source Sans 3', system-ui, sans-serif" data-pair="2">
+        <div class="pair-content">
+          <span class="pair-number">Pair 2</span>
+          <div class="pair-name">Playfair Display + Source Sans 3</div>
+          <div class="pair-heading-preview" style="font-family: 'Playfair Display', Georgia, serif;">Vision and Results.</div>
+          <div class="pair-body-preview" style="font-family: 'Source Sans 3', system-ui, sans-serif;">We help our clients achieve their goals and meet complex challenges: day-to-day operations and long-term strategy.</div>
+        </div>
+        <p class="pair-mood">High-contrast editorial gravitas.</p>
+        <div class="pair-meta">
+          <span>Heading: Playfair Display</span>
+          <span>Body: Source Sans 3</span>
+        </div>
+      </div>
+
+      <!-- Pair 3 -->
+      <div class="font-pair-card" data-heading="'Cormorant Garamond', Georgia, serif" data-body="'Nunito Sans', system-ui, sans-serif" data-pair="3">
+        <div class="pair-content">
+          <span class="pair-number">Pair 3</span>
+          <div class="pair-name">Cormorant Garamond + Nunito Sans</div>
+          <div class="pair-heading-preview" style="font-family: 'Cormorant Garamond', Georgia, serif;">Vision and Results.</div>
+          <div class="pair-body-preview" style="font-family: 'Nunito Sans', system-ui, sans-serif;">We help our clients achieve their goals and meet complex challenges: day-to-day operations and long-term strategy.</div>
+        </div>
+        <p class="pair-mood">Refined elegance meets approachability.</p>
+        <div class="pair-meta">
+          <span>Heading: Cormorant Garamond</span>
+          <span>Body: Nunito Sans</span>
+        </div>
+      </div>
+
+      <!-- Pair 4 -->
+      <div class="font-pair-card" data-heading="'Fraunces', Georgia, serif" data-body="'Work Sans', system-ui, sans-serif" data-pair="4">
+        <div class="pair-content">
+          <span class="pair-number">Pair 4</span>
+          <div class="pair-name">Fraunces + Work Sans</div>
+          <div class="pair-heading-preview" style="font-family: 'Fraunces', Georgia, serif;">Vision and Results.</div>
+          <div class="pair-body-preview" style="font-family: 'Work Sans', system-ui, sans-serif;">We help our clients achieve their goals and meet complex challenges: day-to-day operations and long-term strategy.</div>
+        </div>
+        <p class="pair-mood">Contemporary distinctiveness.</p>
+        <div class="pair-meta">
+          <span>Heading: Fraunces</span>
+          <span>Body: Work Sans</span>
+        </div>
+      </div>
+
+      <!-- Pair 5 -->
+      <div class="font-pair-card" data-heading="'Lora', Georgia, serif" data-body="'Karla', system-ui, sans-serif" data-pair="5">
+        <div class="pair-content">
+          <span class="pair-number">Pair 5</span>
+          <div class="pair-name">Lora + Karla</div>
+          <div class="pair-heading-preview" style="font-family: 'Lora', Georgia, serif;">Vision and Results.</div>
+          <div class="pair-body-preview" style="font-family: 'Karla', system-ui, sans-serif;">We help our clients achieve their goals and meet complex challenges: day-to-day operations and long-term strategy.</div>
+        </div>
+        <p class="pair-mood">Warm readability. </p>
+        <div class="pair-meta">
+          <span>Heading: Lora</span>
+          <span>Body: Karla</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ===================== GROUP 1: Classic ===================== -->
   <div class="group" data-group="classic">
     <div class="group-header">
       <h2>Classic Foundations</h2>
-      <p>Traditional premium palettes — navy, forest, copper.</p>
+      <p>Traditional premium palettes:navy, forest, copper.</p>
     </div>
     <div class="palettes">
 
@@ -287,7 +515,7 @@
         <div class="palette-hero" style="background:#102A43; color:#FAF8F5;">
           <span class="label" style="background:#8B2635; color:#fff;">A</span>
           <h3>Ink & Stone</h3>
-          <p class="mood">Traditional prestige. Dark navy with warm sandstone and a burgundy wax-seal accent.</p>
+          <p class="mood">Dark navy with warm sandstone and a burgundy wax-seal accent.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -315,13 +543,13 @@
         <div class="preview-section" style="background:#102A43; color:#FAF8F5;">
           <p class="eyebrow" style="color:#B85C58;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#9FB3C8;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#9FB3C8;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#8B2635; color:#fff;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#FAF8F5; color:#102A43;">
           <p class="eyebrow" style="color:#8B2635;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#6E6762;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#6E6762;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #102A43; color:#102A43;">Learn More</span>
         </div>
       </div>
@@ -331,7 +559,7 @@
         <div class="palette-hero" style="background:#1A1A2E; color:#F7F5F2;">
           <span class="label" style="background:#B07245; color:#fff;">B</span>
           <h3>Charcoal & Copper</h3>
-          <p class="mood">Editorial & contemporary. Near-black charcoal with oxidized copper warmth.</p>
+          <p class="mood">Near-black charcoal with oxidized copper warmth.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -359,13 +587,13 @@
         <div class="preview-section" style="background:#1A1A2E; color:#F7F5F2;">
           <p class="eyebrow" style="color:#D4976A;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#8A8A9E;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#8A8A9E;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#B07245; color:#fff;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#F7F5F2; color:#1A1A2E;">
           <p class="eyebrow" style="color:#8A5530;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#7A7267;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#7A7267;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #1A1A2E; color:#1A1A2E;">Learn More</span>
         </div>
       </div>
@@ -375,7 +603,7 @@
         <div class="palette-hero" style="background:#0F2419; color:#F8F7F4;">
           <span class="label" style="background:#B8943E; color:#fff;">C</span>
           <h3>Forest & Brass</h3>
-          <p class="mood">Distinctive & confident. Deep evergreen with aged brass — instantly recognizable.</p>
+          <p class="mood">Deep evergreen with aged brass.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -403,13 +631,13 @@
         <div class="preview-section" style="background:#0F2419; color:#F8F7F4;">
           <p class="eyebrow" style="color:#D4B15E;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#7FA890;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#7FA890;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#B8943E; color:#fff;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#F8F7F4; color:#0F2419;">
           <p class="eyebrow" style="color:#8A6E2A;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#6B6960;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#6B6960;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #0F2419; color:#0F2419;">Learn More</span>
         </div>
       </div>
@@ -421,7 +649,7 @@
   <div class="group" data-group="material">
     <div class="group-header">
       <h2>Material-Inspired</h2>
-      <p>Palettes drawn from architectural materials — concrete, blueprint paper, fired clay.</p>
+      <p>Palettes drawn from architectural materials: concrete, blueprint paper, fired clay.</p>
     </div>
     <div class="palettes">
 
@@ -430,7 +658,7 @@
         <div class="palette-hero" style="background:#2C2C2C; color:#F2F0ED;">
           <span class="label" style="background:#C4452D; color:#fff;">D</span>
           <h3>Concrete & Vermillion</h3>
-          <p class="mood">Brutalist restraint meets a single bold signal. Raw concrete with an architect's red pencil.</p>
+          <p class="mood">Raw concrete with a reds.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -458,13 +686,13 @@
         <div class="preview-section" style="background:#1A1A1A; color:#F2F0ED;">
           <p class="eyebrow" style="color:#E07A62;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#8C8C8C;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#8C8C8C;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#C4452D; color:#fff;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#F2F0ED; color:#1A1A1A;">
           <p class="eyebrow" style="color:#C4452D;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#78746E;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#78746E;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #C4452D; color:#C4452D;">Learn More</span>
         </div>
       </div>
@@ -474,7 +702,7 @@
         <div class="palette-hero" style="background:#1B2D45; color:#F0EDE8;">
           <span class="label" style="background:#D49A2A; color:#1B2D45;">E</span>
           <h3>Blueprint & Amber</h3>
-          <p class="mood">Drafting-table precision. Deep blueprint blue with a warm amber that nods to drawing-room lamplight.</p>
+          <p class="mood">Deep blueprint blue with a warm amber.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -502,13 +730,13 @@
         <div class="preview-section" style="background:#0E1A2D; color:#F0EDE8;">
           <p class="eyebrow" style="color:#E8BE5E;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#7B9BB5;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#7B9BB5;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#D49A2A; color:#0E1A2D;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#F0EDE8; color:#1B2D45;">
           <p class="eyebrow" style="color:#9A6F15;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#6D675E;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#6D675E;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #1B2D45; color:#1B2D45;">Learn More</span>
         </div>
       </div>
@@ -518,7 +746,7 @@
         <div class="palette-hero" style="background:#2A2D2E; color:#F4F1EC;">
           <span class="label" style="background:#C67B5C; color:#fff;">F</span>
           <h3>Slate & Terracotta</h3>
-          <p class="mood">Material honesty. Cool architectural slate with fired-earth terracotta warmth.</p>
+          <p class="mood">Cool architectural slate with fired-earth terracotta.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -546,13 +774,13 @@
         <div class="preview-section" style="background:#181B1C; color:#F4F1EC;">
           <p class="eyebrow" style="color:#DDA88E;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#94999B;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#94999B;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#C67B5C; color:#fff;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#F4F1EC; color:#2A2D2E;">
           <p class="eyebrow" style="color:#8E4F35;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#716C66;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#716C66;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #2A2D2E; color:#2A2D2E;">Learn More</span>
         </div>
       </div>
@@ -564,7 +792,7 @@
   <div class="group" data-group="blue">
     <div class="group-header">
       <h2>Blue Explorations</h2>
-      <p>Deep navy to inky indigo — blue-dominant palettes with distinct accent pairings.</p>
+      <p>Blue-dominant palettes with distinct accent pairings.</p>
     </div>
     <div class="palettes">
 
@@ -573,7 +801,7 @@
         <div class="palette-hero" style="background:#0B1628; color:#EDE9E3;">
           <span class="label" style="background:#C9A84C; color:#0B1628;">G</span>
           <h3>Midnight & Burnished Gold</h3>
-          <p class="mood">Near-black navy with restrained gold foil. Luxury without loudness.</p>
+          <p class="mood">Near-black navy with restrained gold foil.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -603,13 +831,13 @@
         <div class="preview-section" style="background:#0B1628; color:#EDE9E3;">
           <p class="eyebrow" style="color:#E0C876;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#7EA3C8;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#7EA3C8;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#C9A84C; color:#0B1628;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#EDE9E3; color:#0B1628;">
           <p class="eyebrow" style="color:#8A7230;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#6B665E;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#6B665E;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #0B1628; color:#0B1628;">Learn More</span>
         </div>
       </div>
@@ -619,7 +847,7 @@
         <div class="palette-hero" style="background:#1C3144; color:#F1EFEB;">
           <span class="label" style="background:#D96B4E; color:#fff;">H</span>
           <h3>Steel Blue & Coral</h3>
-          <p class="mood">Structural blue-steel with a living coral accent. Cold precision warmed by a human pulse.</p>
+          <p class="mood">Structural blue-steel with a living coral accent.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -649,13 +877,13 @@
         <div class="preview-section" style="background:#0D1B28; color:#F1EFEB;">
           <p class="eyebrow" style="color:#E89B84;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#6A94AE;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#6A94AE;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#D96B4E; color:#fff;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#F1EFEB; color:#1C3144;">
           <p class="eyebrow" style="color:#A14432;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#746E66;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#746E66;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #1C3144; color:#1C3144;">Learn More</span>
         </div>
       </div>
@@ -665,7 +893,7 @@
         <div class="palette-hero" style="background:#191D3A; color:#F0EEE9;">
           <span class="label" style="background:#7C9A82; color:#191D3A;">I</span>
           <h3>Indigo Ink & Sage</h3>
-          <p class="mood">Inky blue-violet depth with muted sage green. Contemplative and unexpected.</p>
+          <p class="mood">Inky blue-violet depth with muted sage green.</p>
         </div>
         <div class="swatches">
           <p class="swatch-group-title">Primary</p>
@@ -695,13 +923,13 @@
         <div class="preview-section" style="background:#0C0F22; color:#F0EEE9;">
           <p class="eyebrow" style="color:#A8C2AD;">Case Study</p>
           <h4>Practice Transformation</h4>
-          <p style="color:#9DA2C0;">How we helped a 200-person firm restructure for sustainable growth.</p>
+          <p style="color:#9DA2C0;">Helping leaders and owners prioritize, take action and drive implementation.</p>
           <span class="btn" style="background:#7C9A82; color:#0C0F22;">Read More</span>
         </div>
         <div class="preview-section preview-light" style="background:#F0EEE9; color:#191D3A;">
           <p class="eyebrow" style="color:#4E6E54;">Services</p>
-          <h4>Strategic Growth Planning</h4>
-          <p style="color:#6D6963;">We work with principals to define and execute on a clear growth trajectory.</p>
+          <h4>Vision and Results. Planning</h4>
+          <p style="color:#6D6963;">Management consulting for architecture, engineering and project-based businesses.</p>
           <span class="btn-outline" style="border: 1.5px solid #191D3A; color:#191D3A;">Learn More</span>
         </div>
       </div>
@@ -712,6 +940,7 @@
   <p class="footer-note">9 palette directions for Innovia Partners. Hover swatches to inspect hex values. Use filters above to focus on a group.</p>
 
   <script>
+    /* ===== Palette filter ===== */
     const buttons = document.querySelectorAll('.filter-btn');
     const groups = document.querySelectorAll('.group');
 
@@ -730,6 +959,34 @@
           }
         });
       });
+    });
+
+    /* ===== Font pair switcher ===== */
+    const fontCards = document.querySelectorAll('.font-pair-card');
+    const headingEls = document.querySelectorAll(
+      '.page-header h1, .group-header h2, .palette-hero h3, .preview-section h4, .font-section-header h2'
+    );
+    const bodyEls = document.querySelectorAll(
+      '.page-header p, .group-header p, .palette-hero .mood, .preview-section p:not(.eyebrow), .footer-note, .font-section-header p'
+    );
+
+    function applyFontPair(card) {
+      const headingFont = card.dataset.heading;
+      const bodyFont = card.dataset.body;
+
+      fontCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+
+      headingEls.forEach(el => { el.style.fontFamily = headingFont; });
+      bodyEls.forEach(el => { el.style.fontFamily = bodyFont; });
+
+      /* Update buttons & labels too */
+      document.querySelectorAll('.filter-btn, .label, .eyebrow, .swatch-group-title, .pair-name, .pair-number, .btn, .btn-outline')
+        .forEach(el => { el.style.fontFamily = bodyFont; });
+    }
+
+    fontCards.forEach(card => {
+      card.addEventListener('click', () => applyFontPair(card));
     });
   </script>
 

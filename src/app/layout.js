@@ -7,7 +7,7 @@ export const metadata = {
   description: 'Management consultancy for architecture and AEC practices',
 };
 
-const isDev = process.env.NODE_ENV === 'development';
+//const isDev = process.env.NODE_ENV === 'development';
 
 const showSwitcher = process.env.NODE_ENV === 'development' 
   || process.env.VERCEL_ENV === 'preview';
