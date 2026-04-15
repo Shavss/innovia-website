@@ -101,20 +101,24 @@ export default function Footer() {
               <label htmlFor="footer-email" className="sr-only">
                 Email address
               </label>
-              <div className="flex items-center gap-0 border-b border-white/30 focus-within:border-accent-300 transition-colors">
+              <div className="group flex items-center gap-0 border-b border-white/30 focus-within:border-accent-300 transition-colors">
                 <input
                   id="footer-email"
                   type="email"
                   required
                   placeholder="you@yourpractice.com"
-                  className="flex-1 bg-transparent py-3 text-sm text-white placeholder:text-primary-300/70 focus:outline-none"
+                  className="input-on-dark flex-1 bg-transparent py-3 text-sm tracking-wide text-white placeholder:text-primary-300/70 caret-accent-300 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 appearance-none"
                 />
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 py-3 px-2 text-[0.72rem] uppercase tracking-[0.18em] font-medium text-white hover:text-accent-300 transition-colors focus-visible:outline-none focus-visible:text-accent-300"
+                  className="relative inline-flex items-center gap-2 py-3 pl-4 pr-1 text-[0.72rem] uppercase tracking-[0.18em] font-medium text-white hover:text-accent-300 transition-colors focus-visible:outline-none focus-visible:text-accent-300"
                 >
-                  Subscribe
-                  <ArrowRight size={14} strokeWidth={1.75} />
+                  <span>Subscribe</span>
+                  <ArrowRight
+                    size={14}
+                    strokeWidth={1.75}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-focus-within:translate-x-0.5"
+                  />
                 </button>
               </div>
               <p className="mt-3 text-xs text-primary-300/80">

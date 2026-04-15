@@ -34,7 +34,7 @@ Management consultancy website for architecture and AEC practices. Phase 1: fron
 
 ## Component Reuse
 
-**ALWAYS import and use existing UI components from `src/components/ui/` when building pages and sections.** Before creating any button, card, badge, form input, divider, or nav link element inline, check what already exists in `src/components/ui/` and use it. NEVER duplicate component styles inline when a reusable component exists.
+**ALWAYS import and use existing UI components from `src/components/ui/` when building pages and sections.** Before creating any button, card, badge, form input, divider, or nav link element inline, check what already exists in `src/components/ui/` and use it. NEVER duplicate component styles inline when a reusable component exists. That rule doesn't concern the navigatoin, mobile-menu, header and footer.
 
 ## Conventions
 

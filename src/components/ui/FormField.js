@@ -1,6 +1,6 @@
 export const inputClasses =
-  'w-full bg-surface-card border border-neutral-300 rounded-md px-4 py-3 text-base text-neutral-900 ' +
-  'placeholder:text-neutral-400 transition-colors ' +
+  'w-full bg-surface-card border border-neutral-300 rounded-md px-4 py-3 text-sm text-neutral-900 ' +
+  'placeholder:text-sm placeholder:text-neutral-400 transition-colors ' +
   'focus:outline-none focus:border-accent-600 focus:ring-2 focus:ring-accent-600/20';
 
 export default function FormField({
