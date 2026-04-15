@@ -1,25 +1,27 @@
 import { headingFont, bodyFont } from '@/lib/fonts';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 import './globals.css';
 
 export const metadata = {
-  title: 'Innovia Partners',
-  description: 'Management consultancy for architecture and AEC practices',
+  title: {
+    default: 'Innovia Partners',
+    template: '%s · Innovia Partners',
+  },
+  description:
+    'Management consultancy for the world\u2019s most ambitious architecture, design and engineering practices.',
 };
 
-//const isDev = process.env.NODE_ENV === 'development';
+const showSwitcher = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'preview';
 
-const showSwitcher = process.env.NODE_ENV === 'development' 
-  || process.env.VERCEL_ENV === 'preview';
-  
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-body">
-        {children}
+    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-body bg-background text-foreground">
+        <Header />
+        <main className="flex-1 pt-16 md:pt-20">{children}</main>
+        <Footer />
         {showSwitcher && <ThemeSwitcher />}
       </body>
     </html>

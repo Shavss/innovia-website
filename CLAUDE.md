@@ -5,7 +5,7 @@ Management consultancy website for architecture and AEC practices. Phase 1: fron
 ## Stack
 
 - Next.js 14+ (App Router, NOT Pages Router)
-- JavaScript (JSX) — no TypeScript
+- JavaScript — no TypeScript
 - Tailwind CSS **v4** for styling
 - Framer Motion for animations
 - Lucide React for icons
@@ -28,6 +28,14 @@ Management consultancy website for architecture and AEC practices. Phase 1: fron
 - `/src/lib/` — utility functions (fonts, metadata)
 - `/public/images/` — static images (team headshots, logos)
 
+## File Extensions
+
+**ALWAYS use `.js` extensions for all component files. NEVER use `.jsx`.** This applies to every file in the project: pages, components, utilities. No exceptions.
+
+## Component Reuse
+
+**ALWAYS import and use existing UI components from `src/components/ui/` when building pages and sections.** Before creating any button, card, badge, form input, divider, or nav link element inline, check what already exists in `src/components/ui/` and use it. NEVER duplicate component styles inline when a reusable component exists.
+
 ## Conventions
 
 - Use App Router patterns: metadata exports, generateStaticParams, usePathname from next/navigation. NEVER use getStaticProps, getServerSideProps, or useRouter from next/router.
@@ -40,17 +48,17 @@ Management consultancy website for architecture and AEC practices. Phase 1: fron
 - Wrap Framer Motion animations with useReducedMotion check.
 - Import Lucide icons individually: `import { TrendingUp } from 'lucide-react'` not `import * as Icons`.
 - Use single quotes, semicolons, 2-space indentation, trailing commas (es5).
+- All colors must use CSS variables, not hardcoded hex values, so they work with the theme switcher.
 
 ## Design Direction
 
-- Premium, sophisticated consultancy aesthetic. Not corporate-generic, not startup-flashy.
-- Serif headings  + sans-serif body.
+- Premium, sophisticated botique consultancy aesthetic targeting architects and designers. Not corporate-generic, not startup-flashy.
+- Serif headings + sans-serif body.
 - Animations should be subtle and intentional: fade-in-up on scroll, gentle hover states. Nothing flashy.
 
 ## Tailwind CSS v4 Patterns
 
 This project uses **Tailwind CSS v4** (`tailwindcss@^4`), which differs significantly from v3.
-
 
 ### Configuration
 
@@ -98,8 +106,6 @@ This requires the raw variable to also be defined on `:root` separately from `@t
 ### No tailwind.config.js
 
 Do not create or reference `tailwind.config.js`. To extend the theme (new colour, spacing token etc.), add it to the `@theme` block in `globals.css`.
-
-Install the **Tailwind CSS IntelliSense** extension (`bradlc.vscode-tailwindcss`) for proper v4 autocomplete and hover previews.
 
 ## Pages
 
