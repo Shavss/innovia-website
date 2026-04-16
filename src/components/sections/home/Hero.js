@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
-import Badge from '@/components/ui/Badge'; // <-- Updated import
+import EyebrowLabel from '@/components/ui/EyebrowLabel';
 
 // The extracted 24x6 grid of window widths mapped to levels 1 through 7
 const PATTERN = [
@@ -113,17 +113,15 @@ export default function Hero() {
       <div className="relative mx-auto w-full max-w-[1200px] px-container-x py-section-y">
         <motion.div
           {...fadeUp(0)}
-          className="mb-12 flex flex-wrap items-end justify-between gap-6 border-b border-primary-700/60 pb-5 md:mb-16"
+          className="mb-12 flex items-end justify-between gap-6 border-b border-primary-700/60 pb-5 md:mb-16"
         >
-          {/* Replaced EyebrowLabel with Badges */}
-          <div className="flex flex-wrap gap-2 md:gap-3">
-            <Badge variant="subtleDark">
-              Management Consulting
-            </Badge>
-            <Badge variant="subtleDark">
-              Architecture &amp; AEC
-            </Badge>
-          </div>
+          <EyebrowLabel
+            tone="accentOnDark"
+            size="md"
+            className="!mb-0 text-[0.7rem] md:text-xs"
+          >
+            Management Consulting · Architecture &amp; AEC
+          </EyebrowLabel>
           <span className="hidden text-[0.65rem] font-medium uppercase tracking-[0.22em] text-neutral-400 md:block">
             Est. 2004 &middot; Toronto
           </span>
@@ -151,8 +149,13 @@ export default function Hero() {
           {...fadeUp(0.4)}
           className="mt-10 flex flex-wrap items-center gap-5"
         >
-          <Button href="/services" size="lg" onDark>
-            Explore Our Work <ArrowRight size={16} aria-hidden="true" />
+          <Button href="/services" size="lg" onDark className="group">
+            Explore Our Work{' '}
+            <ArrowRight 
+              size={16} 
+              aria-hidden="true" 
+              className="transition-transform duration-300 ease-out group-hover:translate-x-1" 
+            />
           </Button>
           <span
             aria-hidden="true"
