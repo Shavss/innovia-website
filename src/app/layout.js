@@ -1,7 +1,8 @@
-import { headingFont, bodyFont } from '@/lib/fonts';
+import { dmSerifDisplay, libreFranklin, lora, karla } from '@/lib/fonts';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
+import FontSwitcher from '@/components/ui/FontSwitcher';
 import './globals.css';
 
 export const metadata = {
@@ -15,14 +16,26 @@ export const metadata = {
 
 const showSwitcher = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'preview';
 
+const fontVariables = [
+  dmSerifDisplay.variable,
+  libreFranklin.variable,
+  lora.variable,
+  karla.variable,
+].join(' ');
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}>
+    <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-body bg-background text-foreground">
         <Header />
         <main className="flex-1 pt-16 md:pt-20">{children}</main>
         <Footer />
-        {showSwitcher && <ThemeSwitcher />}
+        {showSwitcher && (
+          <>
+            <ThemeSwitcher />
+            <FontSwitcher />
+          </>
+        )}
       </body>
     </html>
   );

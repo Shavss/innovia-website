@@ -68,6 +68,12 @@
 
 /* Actual color values — runtime-swappable via ThemeSwitcher */
 :root {
+  /* Active font pair — runtime-swappable via FontSwitcher.
+     Each alias points at one of the next/font-provided variables
+     (--font-dm-serif-display, --font-libre-franklin, --font-lora, --font-karla). */
+  --font-heading: var(--font-dm-serif-display);
+  --font-body: var(--font-libre-franklin);
+
   --background: #faf8f5;
   --foreground: #1c1917;
 

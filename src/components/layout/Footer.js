@@ -240,12 +240,6 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-white transition-colors">
               Terms
             </Link>
-            <span className="text-primary-400/60">
-              Crafted by{' '}
-              <a href="#" className="text-primary-200 hover:text-accent-300 transition-colors">
-                Studio Innovia
-              </a>
-            </span>
           </div>
         </div>
       </div>
