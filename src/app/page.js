@@ -8,6 +8,7 @@ import FormField, { inputClasses } from '@/components/ui/FormField';
 import NavLink from '@/components/ui/NavLink';
 import ColorSwatch from '@/components/sections/designsystem/ColorSwatch';
 import SurfaceSwatch from '@/components/sections/designsystem/SurfaceSwatch';
+import Hero from '@/components/sections/home/Hero';
 
 const colorScales = {
   primary: { label: 'Primary' },
@@ -27,7 +28,9 @@ const navItems = [
 
 export default function Home() {
   return (
-    <div className="max-w-[1200px] mx-auto px-container-x py-section-y">
+    <>
+      <Hero />
+      <div className="max-w-[1200px] mx-auto px-container-x py-section-y">
       {/* Header */}
       <header className="mb-20">
         <EyebrowLabel>Design System</EyebrowLabel>
@@ -484,6 +487,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
