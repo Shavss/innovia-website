@@ -1,5 +1,7 @@
 'use client';
 
+import { useRef, useState, useEffect } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import EyebrowLabel from '@/components/ui/EyebrowLabel';
@@ -61,20 +63,57 @@ const contactItems = [
 const footerEyebrowClass = 'block text-[0.65rem] tracking-[0.22em] normal-case font-normal';
 
 export default function Footer() {
+  const reduceMotion = useReducedMotion();
+  const footerRef = useRef(null);
+  const spacerRef = useRef(null);
+  const [footerHeight, setFooterHeight] = useState(0);
   const year = new Date().getFullYear();
 
-  return (
-    <footer className="bg-surface-dark text-primary-100 relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-20 bg-accent-700 pointer-events-none"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] rounded-full blur-3xl opacity-10 bg-primary-400 pointer-events-none"
-      />
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setFooterHeight(entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-      <div className="relative max-w-[1200px] mx-auto px-container-x">
+  const { scrollYProgress } = useScroll({
+    target: spacerRef,
+    offset: ['start end', 'end end'],
+  });
+
+  const brightness = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion ? [1, 1] : [0.65, 1],
+  );
+
+  const filterStyle = useTransform(brightness, (v) => `brightness(${v})`);
+
+  return (
+    <>
+      <div
+        ref={spacerRef}
+        style={{ height: footerHeight }}
+        aria-hidden="true"
+      />
+      <motion.footer
+        ref={footerRef}
+        className="fixed bottom-0 left-0 w-full bg-surface-dark text-primary-100 overflow-hidden"
+        style={{ filter: reduceMotion ? undefined : filterStyle }}
+      >
+        <div
+          aria-hidden="true"
+          className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-20 bg-accent-700 pointer-events-none"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] rounded-full blur-3xl opacity-10 bg-primary-400 pointer-events-none"
+        />
+
+        <div className="relative max-w-[1200px] mx-auto px-container-x">
         {/* Newsletter */}
         <section aria-labelledby="footer-newsletter" className="pt-16 md:pt-24 pb-12 md:pb-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-end">
@@ -243,6 +282,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
+    </>
   );
 }

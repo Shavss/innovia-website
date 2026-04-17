@@ -1,7 +1,7 @@
 'use client';
 
-import { useMemo } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef, useMemo } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import EyebrowLabel from '@/components/ui/EyebrowLabel';
@@ -74,6 +74,24 @@ const EASE = [0.22, 0.61, 0.36, 1];
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
+  const heroRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const parallaxY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion ? [0, 0] : [0, 250],
+  );
+
+  const parallaxOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.8],
+    reduceMotion ? [1, 1] : [1, 0],
+  );
 
   const fadeUp = (delay = 0) => ({
     initial: reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
@@ -83,6 +101,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={heroRef}
       aria-labelledby="home-hero-heading"
       className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-primary-900 text-neutral-100 md:min-h-[calc(100svh-5rem)]"
     >
@@ -92,6 +111,7 @@ export default function Hero() {
         initial={reduceMotion ? { opacity: 0.50 } : { opacity: 0 }}
         animate={{ opacity: 0.50 }}
         transition={{ duration: 1.4, ease: EASE }}
+        style={{ y: parallaxY }}
       >
         <FacadePattern />
       </motion.div>
@@ -110,7 +130,10 @@ export default function Hero() {
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-px bg-gradient-to-b from-transparent via-primary-700/70 to-transparent md:block"
       />
 
-      <div className="relative mx-auto w-full max-w-[1200px] px-container-x py-section-y">
+      <motion.div
+        className="relative mx-auto w-full max-w-[1200px] px-container-x py-section-y"
+        style={{ y: parallaxY, opacity: parallaxOpacity }}
+      >
         <motion.div
           {...fadeUp(0)}
           className="mb-12 flex items-end justify-between gap-6 border-b border-primary-700/60 pb-5 md:mb-16"
@@ -151,10 +174,10 @@ export default function Hero() {
         >
           <Button href="/services" size="lg" onDark className="group">
             Explore Our Work{' '}
-            <ArrowRight 
-              size={16} 
-              aria-hidden="true" 
-              className="transition-transform duration-300 ease-out group-hover:translate-x-1" 
+            <ArrowRight
+              size={16}
+              aria-hidden="true"
+              className="transition-transform duration-300 ease-out group-hover:translate-x-1"
             />
           </Button>
           <span
@@ -165,16 +188,21 @@ export default function Hero() {
             20+ years advising world-class practices
           </span>
         </motion.div>
-      </div>
+      </motion.div>
 
       <motion.div
         {...fadeUp(1.5)}
         className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex"
       >
-        <span className="text-[0.6rem] uppercase tracking-[0.32em] text-neutral-400">
-          Scroll
-        </span>
-        <span className="block h-12 w-px bg-gradient-to-b from-neutral-400/70 to-transparent" />
+        <motion.div
+          className="flex flex-col items-center gap-3"
+          style={{ y: parallaxY, opacity: parallaxOpacity }}
+        >
+          <span className="text-[0.6rem] uppercase tracking-[0.32em] text-neutral-400">
+            Scroll
+          </span>
+          <span className="block h-12 w-px bg-gradient-to-b from-neutral-400/70 to-transparent" />
+        </motion.div>
       </motion.div>
     </section>
   );

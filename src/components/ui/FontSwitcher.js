@@ -55,7 +55,7 @@ export default function FontSwitcher() {
       ref={panelRef}
       style={{
         position: 'fixed',
-        bottom: '4.25rem',
+        bottom: '1.25rem',
         right: '1.25rem',
         zIndex: 9999,
         fontFamily: 'system-ui, -apple-system, sans-serif',

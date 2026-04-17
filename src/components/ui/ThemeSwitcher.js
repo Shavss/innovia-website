@@ -64,7 +64,7 @@ export default function ThemeSwitcher() {
       ref={panelRef}
       style={{
         position: 'fixed',
-        bottom: '1.25rem',
+        bottom: '4.25rem',
         right: '1.25rem',
         zIndex: 9999,
         fontFamily: 'system-ui, -apple-system, sans-serif',

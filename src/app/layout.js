@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-body bg-background text-foreground">
         <Header />
-        <main className="flex-1 pt-16 md:pt-20">{children}</main>
+        <main className="relative z-10 flex-1 bg-background pt-16 md:pt-20 shadow-[0_12px_32px_rgba(0,0,0,0.08)]">{children}</main>
         <Footer />
         {showSwitcher && (
           <>

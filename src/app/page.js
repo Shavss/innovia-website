@@ -30,6 +30,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <div className="relative z-10 bg-background shadow-[0_-12px_32px_rgba(0,0,0,0.06)]">
       <div className="max-w-[1200px] mx-auto px-container-x py-section-y">
       {/* Header */}
       <header className="mb-20">
@@ -487,6 +488,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </div>
       </div>
     </>
   );
