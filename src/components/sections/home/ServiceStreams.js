@@ -7,6 +7,18 @@ import { Compass, Users, Cpu, ArrowRight } from 'lucide-react';
 import AnimatedReveal from '@/components/ui/AnimatedReveal';
 import EyebrowLabel from '@/components/ui/EyebrowLabel';
 
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return isDesktop;
+}
+
 const streams = [
   {
     icon: Compass,
@@ -78,82 +90,98 @@ function lerp(start, end, t) {
   return (t - start) / (end - start);
 }
 
+function StaticStreams() {
+  return (
+    <section
+      aria-labelledby="service-streams-heading"
+      className="bg-surface-light"
+    >
+      <div className="max-w-[1200px] mx-auto px-container-x py-section-y">
+        <div className="max-w-2xl">
+          <AnimatedReveal>
+            <EyebrowLabel tone="accent">What we do</EyebrowLabel>
+            <h2
+              id="service-streams-heading"
+              className="mt-2 text-primary-950 [font-size:clamp(2rem,4vw,3rem)] [line-height:1.05] [letter-spacing:-0.02em]"
+            >
+              How we work with you.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-neutral-700 md:text-lg">
+              Three connected streams, tailored to your practice.
+            </p>
+          </AnimatedReveal>
+        </div>
+        <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3 md:gap-8">
+          {streams.map((stream, i) => (
+            <StreamCardStatic key={stream.name} stream={stream} delay={i * 0.1} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function ServiceStreams() {
   const reduceMotion = useReducedMotion();
+  const isDesktop = useIsDesktop();
   const pinRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+  const progressBarRef = useRef(null);
+  const cardRefs = useRef([]);
+
+  const usePinned = isDesktop && !reduceMotion;
 
   useEffect(() => {
-    if (reduceMotion) return undefined;
+    if (!usePinned) return undefined;
 
     let frame = 0;
 
-    const update = () => {
+    const apply = () => {
       frame = 0;
       const el = pinRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
       const pinRange = el.offsetHeight - vh;
-      if (pinRange <= 0) {
-        setProgress(0);
-        return;
-      }
+      if (pinRange <= 0) return;
       const scrolled = Math.max(0, Math.min(pinRange, -rect.top));
-      setProgress(scrolled / pinRange);
+      const p = scrolled / pinRange;
+
+      const card1T = lerp(0, 0.25, p);
+      const card2T = lerp(0.25, 0.55, p);
+      const card3T = lerp(0.55, 0.85, p);
+      const progressT = lerp(0, 0.85, p);
+
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = `${progressT * 100}%`;
+      }
+
+      const ts = [card1T, card2T, card3T];
+      for (let i = 0; i < cardRefs.current.length; i++) {
+        const node = cardRefs.current[i];
+        if (!node) continue;
+        const t = ts[i];
+        node.style.opacity = String(t);
+        node.style.transform = `translate3d(0, ${(1 - t) * 40}px, 0)`;
+      }
     };
 
     const onScroll = () => {
       if (frame) return;
-      frame = requestAnimationFrame(update);
+      frame = requestAnimationFrame(apply);
     };
 
-    update();
+    apply();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', apply);
     return () => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', update);
+      window.removeEventListener('resize', apply);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [reduceMotion]);
+  }, [usePinned]);
 
-  const card1T = lerp(0, 0.25, progress);
-  const card2T = lerp(0.25, 0.55, progress);
-  const card3T = lerp(0.55, 0.85, progress);
-  const progressT = lerp(0, 0.85, progress);
-
-  const cardT = [card1T, card2T, card3T];
-
-  if (reduceMotion) {
-    return (
-      <section
-        aria-labelledby="service-streams-heading"
-        className="bg-surface-light"
-      >
-        <div className="max-w-[1200px] mx-auto px-container-x py-section-y">
-          <div className="max-w-2xl">
-            <AnimatedReveal>
-              <EyebrowLabel tone="accent">What we do</EyebrowLabel>
-              <h2
-                id="service-streams-heading"
-                className="mt-2 text-primary-950 [font-size:clamp(2rem,4vw,3rem)] [line-height:1.05] [letter-spacing:-0.02em]"
-              >
-                How we work with you.
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-neutral-700 md:text-lg">
-                Three connected streams, tailored to your practice.
-              </p>
-            </AnimatedReveal>
-          </div>
-          <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3 md:gap-8">
-            {streams.map((stream, i) => (
-              <StreamCardStatic key={stream.name} stream={stream} delay={i * 0.1} />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
+  if (!usePinned) {
+    return <StaticStreams />;
   }
 
   return (
@@ -181,33 +209,31 @@ export default function ServiceStreams() {
           <div className="mt-10 md:mt-14">
             <div className="h-px w-full bg-neutral-200">
               <div
+                ref={progressBarRef}
                 aria-hidden="true"
                 className="h-px bg-accent-700"
-                style={{
-                  width: `${progressT * 100}%`,
-                  willChange: 'width',
-                }}
+                style={{ width: '0%', willChange: 'width' }}
               />
             </div>
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:mt-14 md:grid-cols-3 md:gap-8">
-            {streams.map((stream, i) => {
-              const t = cardT[i];
-              return (
-                <div
-                  key={stream.name}
-                  style={{
-                    opacity: t,
-                    transform: `translate3d(0, ${(1 - t) * 40}px, 0)`,
-                    willChange: 'opacity, transform',
-                  }}
-                  className="flex h-full"
-                >
-                  <CardInner stream={stream} />
-                </div>
-              );
-            })}
+            {streams.map((stream, i) => (
+              <div
+                key={stream.name}
+                ref={(node) => {
+                  cardRefs.current[i] = node;
+                }}
+                style={{
+                  opacity: 0,
+                  transform: 'translate3d(0, 40px, 0)',
+                  willChange: 'opacity, transform',
+                }}
+                className="flex h-full"
+              >
+                <CardInner stream={stream} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

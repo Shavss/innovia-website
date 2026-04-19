@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
@@ -75,22 +75,33 @@ const EASE = [0.22, 0.61, 0.36, 1];
 export default function Hero() {
   const reduceMotion = useReducedMotion();
   const heroRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px) and (hover: hover)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
 
+  const parallaxEnabled = isDesktop && !reduceMotion;
+
   const parallaxY = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [0, 0] : [0, 250],
+    parallaxEnabled ? [0, 160] : [0, 0],
   );
 
-  const parallaxOpacity = useTransform(
+  const contentOpacity = useTransform(
     scrollYProgress,
     [0, 0.8],
-    reduceMotion ? [1, 1] : [1, 0],
+    parallaxEnabled ? [1, 0] : [1, 1],
   );
 
   const fadeUp = (delay = 0) => ({
@@ -107,7 +118,7 @@ export default function Hero() {
     >
       <motion.div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.50]"
+        className="absolute inset-0 opacity-[0.50] will-change-transform"
         initial={reduceMotion ? { opacity: 0.50 } : { opacity: 0 }}
         animate={{ opacity: 0.50 }}
         transition={{ duration: 1.4, ease: EASE }}
@@ -132,7 +143,7 @@ export default function Hero() {
 
       <motion.div
         className="relative mx-auto w-full max-w-[1200px] px-container-x py-section-y"
-        style={{ y: parallaxY, opacity: parallaxOpacity }}
+        style={{ opacity: contentOpacity }}
       >
         <motion.div
           {...fadeUp(0)}
@@ -196,7 +207,7 @@ export default function Hero() {
       >
         <motion.div
           className="flex flex-col items-center gap-3"
-          style={{ y: parallaxY, opacity: parallaxOpacity }}
+          style={{ opacity: contentOpacity }}
         >
           <span className="text-[0.6rem] uppercase tracking-[0.32em] text-neutral-400">
             Scroll
