@@ -90,14 +90,18 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  const parallaxRange = reduceMotion ? [0, 0] : isDesktop ? [0, 160] : [0, 80];
+  const parallaxEnabled = isDesktop && !reduceMotion;
 
-  const parallaxY = useTransform(scrollYProgress, [0, 1], parallaxRange);
+  const parallaxY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    parallaxEnabled ? [0, 160] : [0, 0],
+  );
 
   const contentOpacity = useTransform(
     scrollYProgress,
     [0, 0.8],
-    reduceMotion || !isDesktop ? [1, 1] : [1, 0],
+    parallaxEnabled ? [1, 0] : [1, 1],
   );
 
   const fadeUp = (delay = 0) => ({

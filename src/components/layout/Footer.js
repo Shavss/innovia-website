@@ -67,7 +67,16 @@ export default function Footer() {
   const footerRef = useRef(null);
   const spacerRef = useRef(null);
   const [footerHeight, setFooterHeight] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const year = new Date().getFullYear();
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     const el = footerRef.current;
@@ -79,6 +88,8 @@ export default function Footer() {
     return () => observer.disconnect();
   }, []);
 
+  const parallaxEnabled = isDesktop && !reduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: spacerRef,
     offset: ['start end', 'end end'],
@@ -87,7 +98,7 @@ export default function Footer() {
   const brightness = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [1, 1] : [0.65, 1],
+    parallaxEnabled ? [0.65, 1] : [1, 1],
   );
 
   const filterStyle = useTransform(brightness, (v) => `brightness(${v})`);
@@ -102,7 +113,7 @@ export default function Footer() {
       <motion.footer
         ref={footerRef}
         className="fixed bottom-0 left-0 w-full bg-surface-dark text-primary-100 overflow-hidden"
-        style={{ filter: reduceMotion ? undefined : filterStyle }}
+        style={{ filter: parallaxEnabled ? filterStyle : undefined }}
       >
         <div
           aria-hidden="true"
