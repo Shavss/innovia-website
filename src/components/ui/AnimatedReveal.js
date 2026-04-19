@@ -1,13 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
-const directions = {
-  up: { y: 20, x: 0 },
-  left: { y: 0, x: 20 },
-  right: { y: 0, x: -20 },
-  none: { y: 0, x: 0 },
+const offsets = {
+  up: 'translate3d(0, 20px, 0)',
+  left: 'translate3d(20px, 0, 0)',
+  right: 'translate3d(-20px, 0, 0)',
+  none: 'translate3d(0, 0, 0)',
 };
 
 export default function AnimatedReveal({
@@ -18,23 +17,58 @@ export default function AnimatedReveal({
   children,
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
-  const reduceMotion = useReducedMotion();
+  const [revealed, setRevealed] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
-  const offset = directions[direction] ?? directions.up;
-  const initial = reduceMotion ? { opacity: 1 } : { opacity: 0, ...offset };
-  const animate =
-    inView || reduceMotion ? { opacity: 1, x: 0, y: 0 } : initial;
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduceMotion(mq.matches);
+    const handler = () => setReduceMotion(mq.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      setRevealed(true);
+      return undefined;
+    }
+    const el = ref.current;
+    if (!el) return undefined;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setRevealed(true);
+      return undefined;
+    }
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setRevealed(true);
+            obs.disconnect();
+          }
+        });
+      },
+      { rootMargin: '0px 0px -10% 0px' },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [reduceMotion]);
+
+  const offset = offsets[direction] ?? offsets.up;
+  const style = reduceMotion
+    ? undefined
+    : {
+        opacity: revealed ? 1 : 0,
+        transform: revealed ? 'translate3d(0, 0, 0)' : offset,
+        transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
+        willChange: revealed ? 'auto' : 'opacity, transform',
+      };
 
   return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={initial}
-      animate={animate}
-      transition={{ duration, delay, ease: 'easeOut' }}
-    >
+    <div ref={ref} className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }

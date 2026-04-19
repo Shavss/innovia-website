@@ -78,7 +78,7 @@ export default function Hero() {
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px) and (hover: hover)');
+    const mq = window.matchMedia('(min-width: 768px)');
     const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener('change', update);
@@ -90,18 +90,14 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  const parallaxEnabled = isDesktop && !reduceMotion;
+  const parallaxRange = reduceMotion ? [0, 0] : isDesktop ? [0, 160] : [0, 80];
 
-  const parallaxY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    parallaxEnabled ? [0, 160] : [0, 0],
-  );
+  const parallaxY = useTransform(scrollYProgress, [0, 1], parallaxRange);
 
   const contentOpacity = useTransform(
     scrollYProgress,
     [0, 0.8],
-    parallaxEnabled ? [1, 0] : [1, 1],
+    reduceMotion || !isDesktop ? [1, 1] : [1, 0],
   );
 
   const fadeUp = (delay = 0) => ({
