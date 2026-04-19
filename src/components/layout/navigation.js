@@ -9,6 +9,9 @@ export const navItems = [
   { label: 'Insights', href: '/insights' },
   { label: 'Careers', href: '/careers' },
   { label: 'Contacts', href: '/contact' },
+  ...(process.env.NODE_ENV === 'development'
+    ? [{ label: 'Design System', href: '/design-system' }]
+    : []),
 ];
 
 export function isActive(pathname, href) {

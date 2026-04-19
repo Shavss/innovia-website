@@ -12,6 +12,11 @@ export default function FontSwitcher() {
   const panelRef = useRef(null);
 
   useEffect(() => {
+    applyPair(defaultFontPair);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     function handleClick(e) {
       if (panelRef.current && !panelRef.current.contains(e.target)) {
         setOpen(false);

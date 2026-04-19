@@ -9,8 +9,13 @@ const groups = [...new Set(Object.values(themes).map((t) => t.group))];
 
 export default function ThemeSwitcher() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('ink-and-stone');
+  const [active, setActive] = useState('indigo-ink-and-sage');
   const panelRef = useRef(null);
+
+  useEffect(() => {
+    applyTheme('indigo-ink-and-sage');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Close on outside click
   useEffect(() => {
@@ -49,13 +54,13 @@ export default function ThemeSwitcher() {
 
   function resetTheme() {
     const root = document.documentElement;
-    const vars = themes['ink-and-stone'].colors;
+    const vars = themes['indigo-ink-and-sage'].colors;
 
     Object.keys(vars).forEach((prop) => {
       root.style.removeProperty(prop);
     });
 
-    setActive('ink-and-stone');
+    setActive('indigo-ink-and-sage');
     setOpen(false);
   }
 

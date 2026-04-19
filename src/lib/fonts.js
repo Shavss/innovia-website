@@ -41,4 +41,4 @@ export const fontPairs = {
   },
 };
 
-export const defaultFontPair = 'dm-serif-libre-franklin';
+export const defaultFontPair = 'lora-karla';

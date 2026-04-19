@@ -25,23 +25,23 @@ const ROWS = PATTERN.length;
 
 function generateBars() {
   const bars = [];
-  
+
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
       const level = PATTERN[r][c];
-      
+
       // Calculate width based on the level (max width is 16, leaving a 1px minimum gap)
       const width = 2 * level + 2;
-      
+
       // Center the bar horizontally within its column's pitch
       const xCenter = c * PITCH_X + PITCH_X / 2;
       const x = xCenter - width / 2;
       const y = r * PITCH_Y;
-      
+
       bars.push({ x, y, width, height: BAR_HEIGHT });
     }
   }
-  
+
   return bars;
 }
 
