@@ -14,7 +14,7 @@ const news = [
     ],
   },
   {
-    title: 'The Business Case for Digital Transformation in AEC',
+    title: 'The Business Case for Digital Transformation',
     slug: 'digital-transformation-aec',
     date: '2026-02-28',
     category: 'Digital',
