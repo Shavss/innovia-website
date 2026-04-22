@@ -4,6 +4,7 @@ const news = [
     slug: 'navigating-succession',
     date: '2026-03-15',
     category: 'Succession',
+    image: '/images/news/navigating-succession.jpg',
     excerpt:
       'A look at how mid-size firms can plan leadership transitions without disrupting client relationships or project delivery.',
     body: [
@@ -18,6 +19,7 @@ const news = [
     slug: 'digital-transformation-aec',
     date: '2026-02-28',
     category: 'Digital',
+    image: '/images/news/digital-transformation-aec.jpg',
     excerpt:
       'Why adopting new technology is not just about efficiency, but about positioning your practice for the work of the next decade.',
     body: [
@@ -32,6 +34,7 @@ const news = [
     slug: 'high-performance-teams',
     date: '2026-02-10',
     category: 'Human Capital',
+    image: '/images/news/high-performance-teams.jpg',
     excerpt:
       'What distinguishes project teams that consistently deliver on time and on budget from those that struggle.',
     body: [
@@ -42,10 +45,11 @@ const news = [
     ],
   },
   {
-    title: 'Q1 2026 Industry Outlook: Architecture and Engineering',
+    title: 'Q1 2026 Industry Outlook: AEC',
     slug: 'q1-2026-outlook',
     date: '2026-01-20',
     category: 'Industry',
+    image: '/images/news/q1-2026-outlook.jpg',
     excerpt:
       'Key trends shaping the AEC sector in the first quarter of 2026, from interest rates to talent competition.',
     body: [

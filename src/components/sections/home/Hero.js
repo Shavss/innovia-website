@@ -114,7 +114,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       aria-labelledby="home-hero-heading"
-      className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-primary-900 text-neutral-100 md:min-h-[calc(100svh-5rem)]"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-primary-900 text-neutral-100"
     >
       <motion.div
         aria-hidden="true"
@@ -142,7 +142,7 @@ export default function Hero() {
       />
 
       <motion.div
-        className="relative mx-auto w-full max-w-[1200px] px-container-x py-section-y"
+        className="relative mx-auto w-full max-w-[1200px] px-container-x pt-28 pb-section-y md:pt-32"
         style={{ opacity: contentOpacity }}
       >
         <motion.div

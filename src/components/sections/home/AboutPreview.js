@@ -27,13 +27,6 @@ export default function AboutPreview() {
             </p>
           </AnimatedReveal>
 
-          <AnimatedReveal delay={0.2}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-700 md:text-lg">
-             Our work sits at the intersection of strategy, people and operations. We develop tailored solutions and help our clients achieve their strategic goals and meet complex challenges, from day-to-day operations through succession, growth, restructuring and long-term transformation, translating ambition into durable, quietly effective organisations.
-
-            </p>
-          </AnimatedReveal>
-
           <AnimatedReveal delay={0.3}>
             <Link
               href="/team"
@@ -51,30 +44,25 @@ export default function AboutPreview() {
 
         <div className="md:col-span-5">
           <AnimatedReveal delay={0.15} direction="left">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-sm">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden">
               <div
                 aria-hidden="true"
-                className="absolute left-0 top-0 h-full w-[3px] bg-accent-700"
+                className="absolute left-0 top-0 h-full w-[3px] bg-accent-700 z-10"
               />
               <div
                 aria-hidden="true"
-                className="absolute left-6 top-10 h-[82%] w-px bg-neutral-300"
+                className="absolute left-6 top-10 h-[82%] w-px bg-neutral-300 z-10"
               />
-              <div className="relative h-full pl-10 pr-2 pt-10">
-                <p className="font-[family-name:var(--font-heading)] text-[0.7rem] uppercase tracking-[0.32em] text-neutral-500">
-                  Placeholder for an image
-                </p>
-                <p className="mt-8 font-[family-name:var(--font-heading)] text-[clamp(3.5rem,8vw,5.5rem)] leading-[0.85] tracking-tight text-primary-900">
-                  IP
-                </p>
-                <p className="mt-6 max-w-[18ch] font-[family-name:var(--font-heading)] italic text-lg text-neutral-700">
-                  Innovia Partners — management consulting for the creative
-                  professions.
-                </p>
-                <div className="absolute bottom-6 right-2 flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.32em] text-neutral-500">
-                  <span className="h-px w-8 bg-neutral-400" />
-                  Image
-                </div>
+              <Image
+                src="/images/home/rowley.jpg"
+                alt="Innovia Partners — management consulting for the creative professions"
+                fill
+                className="object-cover pl-10 pt-10 pr-2"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              <div className="absolute bottom-6 right-2 z-10 flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.32em] text-white drop-shadow">
+                <span className="h-px w-8 bg-white/70" />
+                Image
               </div>
             </div>
           </AnimatedReveal>

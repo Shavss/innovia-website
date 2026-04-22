@@ -1,5 +1,6 @@
 import { dmSerifDisplay, libreFranklin, lora, karla } from '@/lib/fonts';
 import Header from '@/components/layout/Header';
+import MainShell from '@/components/layout/MainShell';
 import Footer from '@/components/layout/Footer';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 import FontSwitcher from '@/components/ui/FontSwitcher';
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-body bg-background text-foreground">
         <Header />
-        <main className="relative z-10 flex-1 bg-background pt-16 md:pt-20 shadow-[0_12px_32px_rgba(0,0,0,0.08)]">{children}</main>
+        <MainShell>{children}</MainShell>
         <Footer />
         {showSwitcher && (
           <>

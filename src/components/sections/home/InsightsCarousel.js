@@ -6,17 +6,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useReducedMotion } from 'framer-motion';
 import AnimatedReveal from '@/components/ui/AnimatedReveal';
 import EyebrowLabel from '@/components/ui/EyebrowLabel';
+import InsightCard from '@/components/ui/InsightCard';
 import news from '@/data/news';
-
-function formatDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
-}
 
 function getVisibleCount(width) {
   if (width >= 1024) return 3;
@@ -141,7 +132,7 @@ export default function InsightsCarousel() {
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
-          <div className="overflow-hidden">
+          <div className="-mx-3 -my-4 overflow-x-clip px-3 py-4">
             <div
               ref={trackRef}
               className="flex"
@@ -157,36 +148,13 @@ export default function InsightsCarousel() {
                 return (
                   <div
                     key={item.slug}
-                    className="shrink-0 px-3 first:pl-0 last:pr-0"
+                    className="shrink-0 px-3"
                     style={{ width: `${slideWidthPct}%` }}
                     aria-hidden={!isActive}
                   >
-                    <Link
-                      href={`/news/${item.slug}`}
-                      tabIndex={isActive ? 0 : -1}
-                      aria-hidden={!isActive}
-                      className="group flex h-full flex-col rounded-lg border border-neutral-200 bg-surface-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent-600/40 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-light"
-                    >
-                      <div className="flex items-center gap-3 text-[0.65rem] uppercase tracking-[0.24em] text-neutral-500">
-                        <time dateTime={item.date}>{formatDate(item.date)}</time>
-                        <span aria-hidden="true" className="h-px w-6 bg-neutral-300" />
-                        <span>{item.category}</span>
-                      </div>
-                      <h3 className="mt-5 text-primary-950 [font-size:1.35rem] [line-height:1.2] [letter-spacing:-0.01em]">
-                        {item.title}
-                      </h3>
-                      <p className="mt-4 flex-1 text-sm leading-relaxed text-neutral-700">
-                        {item.excerpt}
-                      </p>
-                      <span className="mt-7 inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-primary-900 transition-colors group-hover:text-accent-700">
-                        Read more
-                        <ArrowRight
-                          size={14}
-                          aria-hidden="true"
-                          className="transition-transform duration-300 ease-out group-hover:translate-x-1"
-                        />
-                      </span>
-                    </Link>
+                    <AnimatedReveal delay={i * 0.05}>
+                      <InsightCard item={item} isActive={isActive} />
+                    </AnimatedReveal>
                   </div>
                 );
               })}

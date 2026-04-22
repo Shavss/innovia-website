@@ -3,6 +3,7 @@ import AboutPreview from '@/components/sections/home/AboutPreview';
 import ServiceStreams from '@/components/sections/home/ServiceStreams';
 import CredibilityStrip from '@/components/sections/home/CredibilityStrip';
 import InsightsList from '@/components/sections/home/InsightsList';
+import InsightsCarousel from '@/components/sections/home/InsightsCarousel';
 import ContactCTA from '@/components/sections/home/ContactCTA';
 
 export const metadata = {
@@ -18,7 +19,7 @@ export default function Home() {
       <AboutPreview />
       <ServiceStreams />
       <CredibilityStrip />
-      <InsightsList />
+      <InsightsCarousel />
       <ContactCTA />
     </main>
   );

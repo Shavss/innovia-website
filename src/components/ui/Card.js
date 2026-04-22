@@ -11,6 +11,7 @@ const Card = forwardRef(function Card(
     padding = 'md',
     hoverable = false,
     as: Tag = 'div',
+    media,
     className = '',
     children,
     ...rest
@@ -20,6 +21,21 @@ const Card = forwardRef(function Card(
   const hover = hoverable
     ? 'group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-accent-600/40 cursor-pointer'
     : '';
+
+  if (media) {
+    return (
+      <Tag
+        ref={ref}
+        className={`bg-surface-card border border-neutral-200 rounded-lg overflow-hidden flex flex-col ${hover} ${className}`.trim()}
+        {...rest}
+      >
+        {media}
+        <div className={`flex flex-1 flex-col ${paddings[padding]}`}>
+          {children}
+        </div>
+      </Tag>
+    );
+  }
 
   return (
     <Tag

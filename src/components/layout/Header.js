@@ -88,9 +88,17 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  const headerBg = scrolled
-    ? 'bg-background/85 backdrop-blur-xl border-neutral-200/70 shadow-[0_1px_0_0_rgba(0,0,0,0.02)]'
-    : 'bg-transparent backdrop-blur-0 border-transparent';
+  const overHero = pathname === '/' && !scrolled;
+
+  const headerBg = overHero
+    ? 'bg-transparent backdrop-blur-0 border-transparent'
+    : 'bg-background/85 backdrop-blur-xl border-neutral-200/70 shadow-[0_1px_0_0_rgba(0,0,0,0.02)]';
+
+  const hamburgerCls = overHero
+    ? 'text-white hover:text-white/80'
+    : 'text-primary-900 hover:text-accent-600';
+
+  const dividerCls = overHero ? 'border-white/20' : 'border-neutral-200/80';
 
   return (
     <>
@@ -98,13 +106,13 @@ export default function Header() {
         className={`fixed top-0 inset-x-0 z-50 border-b transition-[background-color,backdrop-filter,border-color,box-shadow] duration-300 ${headerBg}`}
       >
         <div className="max-w-[1200px] mx-auto px-container-x">
-          <div className="flex items-center justify-between h-16 md:h-20 gap-6">
-            <Logo />
+          <div className="flex items-center justify-between h-14 md:h-16 gap-6">
+            <Logo onDark={overHero} />
 
-            <Navigation pathname={pathname} />
+            <Navigation pathname={pathname} onDark={overHero} />
 
-            <div className="hidden md:flex items-center gap-4 pl-4 border-l border-neutral-200/80">
-              <LangSwitch lang={lang} setLang={setLang} />
+            <div className={`hidden md:flex items-center gap-4 pl-4 border-l ${dividerCls}`}>
+              <LangSwitch lang={lang} setLang={setLang} onDark={overHero} />
             </div>
 
             <button
@@ -113,7 +121,7 @@ export default function Header() {
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              className="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-md text-primary-900 hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+              className={`md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors ${hamburgerCls}`}
             >
               <Menu size={22} strokeWidth={1.5} />
             </button>

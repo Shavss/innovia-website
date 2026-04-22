@@ -19,7 +19,13 @@ export function isActive(pathname, href) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export default function Navigation({ pathname }) {
+export default function Navigation({ pathname, onDark = false }) {
+  const activeCls = onDark ? 'text-white font-semibold' : 'text-primary-900 font-semibold';
+  const inactiveCls = onDark
+    ? 'text-white/80 hover:text-white font-medium'
+    : 'text-neutral-600 hover:text-accent-600 font-medium';
+  const underline = onDark ? 'bg-white' : 'bg-accent-600';
+
   return (
     <nav aria-label="Primary" className="hidden md:flex items-center">
       <ul className="flex items-center gap-x-5 lg:gap-x-7">
@@ -31,15 +37,13 @@ export default function Navigation({ pathname }) {
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
                 className={`relative inline-block text-[0.72rem] lg:text-[0.78rem] uppercase tracking-[0.14em] py-1.5 transition-colors focus-visible:outline-none focus-visible:text-accent-600 ${
-                  active
-                    ? 'text-primary-900 font-semibold'
-                    : 'text-neutral-600 hover:text-accent-600 font-medium'
+                  active ? activeCls : inactiveCls
                 }`}
               >
                 {item.label}
                 <span
                   aria-hidden="true"
-                  className={`absolute left-0 right-0 -bottom-0.5 h-px origin-left bg-accent-600 transition-transform duration-300 ${
+                  className={`absolute left-0 right-0 -bottom-0.5 h-px origin-left ${underline} transition-transform duration-300 ${
                     active ? 'scale-x-100' : 'scale-x-0'
                   }`}
                 />
