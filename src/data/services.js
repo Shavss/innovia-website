@@ -1,45 +1,9 @@
 const services = [
-  {
-    title: 'Firm Profitability Improvement',
-    slug: 'firm-profitability',
-    iconName: 'TrendingUp',
-    shortDescription:
-      'Strengthen your bottom line through better project delivery, resource allocation, and financial management.',
-    longDescription: [
-      'Architecture and engineering practices often leave significant value on the table through inefficient project delivery, misaligned pricing strategies, and underutilized resources. We work with firm leaders to identify the specific levers that will have the greatest impact on profitability.',
-      'Our approach begins with a detailed analysis of your current financial performance at both the firm and project level. From there, we develop actionable strategies that improve margins without compromising the quality of work your practice is known for.',
-      'The result is a practice that can invest in its people, pursue ambitious projects, and sustain itself through market cycles with confidence.',
-    ],
-    includes: [
-      'Financial performance benchmarking against industry standards',
-      'Project-level profitability analysis and improvement',
-      'Resource utilization optimization',
-      'Pricing strategy and fee structure review',
-      'Overhead reduction and operational efficiency',
-    ],
-  },
-  {
-    title: 'Succession, Mergers & Acquisitions',
-    slug: 'succession-mergers-acquisitions',
-    iconName: 'Users',
-    shortDescription:
-      'Plan leadership transitions, ownership changes, and strategic partnerships that preserve your firm\'s culture and value.',
-    longDescription: [
-      'Leadership transitions are among the most consequential moments in a practice\'s life. Whether you are planning a generational handover, exploring a merger, or positioning for acquisition, the stakes for your people, your clients, and your legacy are high.',
-      'We bring structured methodology and deep experience to these processes. We have guided firms through internal succession plans that span a decade, facilitated mergers between complementary practices, and supported founders through the emotional and financial complexities of stepping back.',
-      'Every engagement is tailored to the firm\'s specific context, culture, and ambitions. There is no one-size-fits-all playbook for succession, and we do not pretend otherwise.',
-    ],
-    includes: [
-      'Succession planning and timeline development',
-      'Ownership transition structuring',
-      'Merger and acquisition strategy and due diligence',
-      'Valuation and deal structuring support',
-      'Post-merger integration planning',
-    ],
-  },
+  // ─── STRATEGY STREAM ───
   {
     title: 'Strategy, Growth & Change',
     slug: 'strategy-growth-change',
+    stream: 'strategy',
     iconName: 'Target',
     shortDescription:
       'Define where your practice is going and build the roadmap to get there.',
@@ -48,69 +12,137 @@ const services = [
       'We help leaders articulate a clear strategic vision and translate it into concrete plans with measurable milestones. This includes market positioning, service offering development, geographic expansion, and the organizational changes needed to support growth.',
       'Importantly, we stay involved through implementation. Strategy without execution is just a document. We work alongside your leadership team to drive the change, adjust course when needed, and hold the plan accountable.',
     ],
-    includes: [
-      'Strategic planning workshops and facilitation',
-      'Market positioning and competitive analysis',
-      'Growth roadmap development',
-      'Organizational change management',
-      'Implementation support and accountability',
+    subServices: [
+      {
+        title: 'Strategic Planning & Retreats',
+        iconName: 'Compass',
+        description:
+          'We help firms define long-term goals, align their teams, and set actionable plans for growth. Through facilitated retreats and in-depth strategy sessions, we guide leadership in refining their vision and creating a roadmap to achieve it.',
+      },
+      {
+        title: 'Organizational Design',
+        iconName: 'LayoutGrid',
+        description:
+          'Design practices often face challenges as they grow, including siloed departments, unclear reporting structures, and inefficient decision-making processes. We work with your leadership team to analyze your current organizational structure and identify opportunities for improvement.',
+      },
+      {
+        title: 'Succession Planning',
+        iconName: 'ArrowRightLeft',
+        description:
+          'Succession in design practices is not a mere replacement process. In order to secure design continuity and legacy, succession planning should be viewed as an ongoing strategic and transformative journey.',
+      },
+      {
+        title: 'Mergers & Acquisition Support',
+        iconName: 'Handshake',
+        description:
+          'We support firms through the complex process of mergers and acquisitions, offering guidance on financial assessments, cultural integration, and strategic alignment. Our goal is to ensure a smooth transition that strengthens the combined entity and maximizes value.',
+      },
+      {
+        title: 'Organizational Profitability',
+        iconName: 'TrendingUp',
+        description:
+          'We evaluate your firm\'s financial health by analyzing key financial documents and industry-specific metrics critical to design and professional services firms, such as net revenue per employee, utilization rates, and compensation. We then deliver actionable recommendations that enhance financial stability and support long-term growth.',
+      },
     ],
   },
+
+  // ─── PEOPLE & PROCESSES STREAM ───
   {
-    title: 'Data & Business Intelligence',
-    slug: 'data-business-intelligence',
-    iconName: 'BarChart3',
+    title: 'People & Processes',
+    slug: 'people-processes',
+    stream: 'people-processes',
+    iconName: 'Users',
     shortDescription:
-      'Turn your practice\'s data into clear insight that drives better decisions.',
+      'Build the teams, structures, and workflows that sustain high performance.',
     longDescription: [
-      'Most architecture and engineering firms sit on a wealth of data, trapped in project management tools, accounting systems, and spreadsheets, but lack the frameworks to extract meaningful insight from it.',
-      'We help practices build business intelligence capabilities that connect financial, operational, and project data into a coherent picture. This gives leaders the visibility they need to spot trends, identify risks early, and make decisions grounded in evidence rather than intuition alone.',
-      'Our approach is pragmatic. We work with your existing tools and systems wherever possible, and we focus on the metrics that actually matter for your practice rather than building dashboards for the sake of it.',
+      'The quality of an architecture or engineering practice ultimately comes down to its people and the processes that connect them. Compensation structures, career pathways, project delivery systems, and development programs all play a role in whether a firm can attract, keep, and empower the talent it needs.',
+      'We work with firm leaders to design the operational backbone that turns individual talent into collective performance. This means aligning how people are hired, developed, compensated, and led with how the firm actually delivers its work.',
+      'In an industry where talent is both the primary asset and the primary cost, getting people and processes right is not a nice-to-have. It is a competitive necessity.',
     ],
-    includes: [
-      'KPI framework design for creative practices',
-      'Dashboard and reporting system implementation',
-      'Project performance analytics',
-      'Practice management software selection and optimization',
-      'Data-driven decision-making workshops',
+    subServices: [
+      {
+        title: 'Process Optimization',
+        iconName: 'Settings',
+        description:
+          'In creative environments, inefficient processes can hinder innovation, delay project delivery, increase costs. We work closely with your teams to identify inefficiencies and streamline key processes, allowing your firm to deliver high-quality design work more efficiently.',
+      },
+      {
+        title: 'Project Management Improvement',
+        iconName: 'ClipboardCheck',
+        description:
+          'We help you streamline project management processes, methodologies, tools, and KPIs in a way that ensures profitability and on-time delivery, all while maintaining the highest quality standards.',
+      },
+      {
+        title: 'Compensation Analysis',
+        iconName: 'PiggyBank',
+        description:
+          'We maximize your firm\'s potential with a compensation strategy built to outperform the market and drive success. We align your pay structures to attract and retain top talent, boost performance, and fuel sustainable growth.',
+      },
+      {
+        title: '360 Talent Management',
+        iconName: 'UserCheck',
+        description:
+          'We analyze recruitment practices, leadership development, and succession planning to identify opportunities for improving your employees\' journey and overall experience. We help you refine your strategies for attracting and developing top talent, ensuring your organization always has the right people to drive long-term success.',
+      },
+      {
+        title: 'Leadership Acceleration',
+        iconName: 'FastForward',
+        description:
+          'Through tailored coaching and development programs, we help individuals unlock their potential, driving growth and building a pipeline of future-ready leaders for your organization.',
+      },
+      {
+        title: 'Change Management',
+        iconName: 'RefreshCw',
+        description:
+          'Our proven framework to implement change with clarity and structure brings together the right people from your studio to guide complex change initiatives and establishes clear accountabilities and roles throughout.',
+      },
     ],
   },
+
+  // ─── TECHNOLOGY STREAM ───
   {
-    title: 'Compensation & Human Capital',
-    slug: 'compensation-human-capital',
-    iconName: 'Heart',
+    title: 'Technology & Digital Transformation',
+    slug: 'technology',
+    stream: 'technology',
+    iconName: 'Cpu',
     shortDescription:
-      'Attract, retain, and develop the talent your practice needs to thrive.',
+      'Adopt the tools and systems that modernise operations and unlock data-driven decisions.',
     longDescription: [
-      'The quality of an architecture or engineering practice ultimately comes down to its people. Compensation structures, career pathways, and development programs all play a role in whether a firm can attract and keep the talent it needs.',
-      'We work with firm leaders to design compensation models that are competitive, transparent, and aligned with the firm\'s financial realities. Beyond compensation, we help build human capital strategies that create real career progression, meaningful professional development, and a culture that retains its best people.',
-      'In an industry where talent is the primary asset and the primary cost, getting human capital right is not a nice-to-have. It is a competitive necessity.',
+      'Embarking on a Digital Transformation journey can improve how you work, lead, and innovate to drive sustainable growth. However, every practice operates with unique challenges, culture, and context, making it essential to understand your current state and future goals to avoid adopting new tech and systems just for the sake of it.',
+      'Without the proper framework, even the best digital tools will fall short of delivering meaningful outcomes. Achieving success requires thoughtful investments and strategic use of technology.',
+      'Let us help you discover opportunities that drive real value.',
     ],
-    includes: [
-      'Compensation benchmarking and structure design',
-      'Career pathway and progression frameworks',
-      'Performance review system design',
-      'Leadership development programs',
-      'Talent retention strategy',
-    ],
-  },
-  {
-    title: 'Project Performance Analysis',
-    slug: 'project-performance-analysis',
-    iconName: 'ClipboardCheck',
-    shortDescription:
-      'Understand how your projects perform financially and operationally, and where to improve.',
-    longDescription: [
-      'Projects are where the work happens, and where profitability is won or lost. Yet many practices lack the systems and discipline to track project performance in a way that produces actionable insight.',
-      'We help firms establish project performance frameworks that capture the right data at the right time. This includes tracking fee burn, scope changes, resource allocation, and schedule adherence in a way that gives project leaders and firm principals early warning when things go off track.',
-      'The goal is not to add administrative burden. It is to create lightweight, consistent processes that make project performance visible and manageable, so that lessons from one project inform the next.',
-    ],
-    includes: [
-      'Project profitability tracking and analysis',
-      'Resource planning and workload management',
-      'Scope management and change order processes',
-      'Post-project review frameworks',
-      'Project management methodology and training',
+    subServices: [
+      {
+        title: 'Strategy for Digital Transformation',
+        iconName: 'Lightbulb',
+        description:
+          'Embarking on a Digital Transformation journey can improve how you work, lead, and innovate to drive sustainable growth. However, every practice operates with unique challenges, culture, and context, making it essential to understand your current state and future goals to avoid adopting new tech and systems just for the sake of it.',
+      },
+      {
+        title: 'Knowledge & Digital Assets Management',
+        iconName: 'Brain',
+        description:
+          'Practices that master Knowledge and Digital Assets management keep essential insights, best practices, and expertise at their fingertips. With seamless cross-pollination of ideas they are able to dismantle silos and unlock collective knowledge.',
+      },
+      {
+        title: 'BIM Implementation & Transition',
+        iconName: 'Box',
+        description:
+          'Despite its benefits, many firms struggle with BIM transitions due to unclear direction and resistance to changing current workflows. A well-defined and strategic approach is crucial for overcoming these challenges and achieving a successful BIM implementation.',
+      },
+      {
+        title: 'Data Strategy & Governance',
+        iconName: 'Database',
+        description:
+          'Data Strategy dives deeper into how data acts as a key enabler of transformation, focusing on its management and governance. This involves ensuring data aligns with broader transformation goals while emphasizing accuracy, security, and usability.',
+      },
+      {
+        title: 'Sourcing & Procurement',
+        iconName: 'ShoppingCart',
+        description:
+          'Leverage our expertise to help you select the right technology solutions for your firm\'s digital needs, whether it\'s BIM software, project management platforms, intranet, AI or cloud solutions. As your trusted advisor, we ensure that your chosen vendors will deliver exactly what you need.',
+      },
     ],
   },
 ];

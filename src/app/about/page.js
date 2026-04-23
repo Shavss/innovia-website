@@ -1,10 +1,10 @@
 import { ArrowRight } from 'lucide-react';
 import EyebrowLabel from '@/components/ui/EyebrowLabel';
 import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
 import Divider from '@/components/ui/Divider';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import AnimatedReveal from '@/components/ui/AnimatedReveal';
+import TeamSection from '@/components/sections/about/TeamSection';
 import team from '@/data/team';
 
 export const metadata = {
@@ -33,10 +33,10 @@ const values = [
 ];
 
 const stats = [
-  { value: '20+', label: 'Years of practice' },
-  { value: '100+', label: 'Firms advised' },
-  { value: '3', label: 'Countries active' },
-  { value: '15+', label: 'Client relationships over a decade' },
+  { value: '20+', label: 'Years of helping our clients grow and succeed' },
+  { value: '360°', label: 'Expertise and knowledge in all business pillars' },
+  { value: '200+', label: 'Results-oriented projects with small, medium and large firms' },
+  { value: '100+', label: 'Clients in Canada, the United States and Europe' },
 ];
 
 export default function About() {
@@ -55,9 +55,9 @@ export default function About() {
               Confidence in change, built over two decades.
             </h1>
             <p className="text-primary-200 text-lg leading-relaxed mb-10 max-w-2xl">
-              We are a management consultancy dedicated exclusively to architecture, design and
-              engineering practices. Since 2003, we have helped some of the world&rsquo;s most
-              ambitious firms build the systems, strategies and structures that create lasting value.
+              We are a management consultancy dedicated exclusively to architecture, design and engineering practices.
+              Since 2003, we have helped ambitious firms build the systems, strategies and structures that create lasting value.
+              We understand that for those committed to their craft, the professional journey is also personal.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button size="lg" onDark href="/contact">
@@ -129,42 +129,7 @@ export default function About() {
 
       {/* Team */}
       <SectionWrapper as="section">
-        <AnimatedReveal>
-          <EyebrowLabel>Our team</EyebrowLabel>
-          <h2 className="mt-4 mb-4 max-w-xl">
-            Practitioners who understand your world.
-          </h2>
-          <p className="text-neutral-600 max-w-2xl mb-12 leading-relaxed">
-            Every member of the Innovia team brings deep sector knowledge and genuine experience
-            working with creative, project-based businesses. We are advisors who have spent careers
-            in this industry, not generalists parachuted in.
-          </p>
-        </AnimatedReveal>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {team.map((member, i) => (
-            <AnimatedReveal key={member.slug} delay={i * 0.07}>
-              <Card padding="lg" className="h-full">
-                {/* Avatar */}
-                <div
-                  aria-hidden="true"
-                  className="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center mb-5 shrink-0"
-                >
-                  <span className="font-heading text-lg text-primary-700 select-none">
-                    {member.initials}
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-primary-900 mb-0.5">{member.name}</h3>
-                  <p className="text-accent-600 text-sm font-medium mb-3">{member.title}</p>
-                  <p className="text-neutral-600 text-sm leading-relaxed">
-                    {member.bio[0]}
-                  </p>
-                </div>
-              </Card>
-            </AnimatedReveal>
-          ))}
-        </div>
+        <TeamSection team={team} />
       </SectionWrapper>
 
       {/* CTA */}

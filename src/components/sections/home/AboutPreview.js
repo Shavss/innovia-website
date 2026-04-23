@@ -29,7 +29,7 @@ export default function AboutPreview() {
 
           <AnimatedReveal delay={0.3}>
             <Link
-              href="/team"
+              href="/about"
               className="group mt-10 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-primary-900 transition-colors hover:text-accent-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-light"
             >
               Learn more
