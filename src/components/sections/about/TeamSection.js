@@ -206,7 +206,7 @@ export default function TeamSection({ team }) {
   }, []);
 
   const core = team.filter((m) => !m.isAssociate);
-  const associates = team.filter((m) => m.isAssociate);
+  const associates = team.filter((m) => m.isAssociate && m.isActive !== false);
   const rows = chunk(core, cols);
 
   const openMember = core.find((m) => m.slug === openSlug) || null;

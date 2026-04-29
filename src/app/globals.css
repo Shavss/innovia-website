@@ -74,51 +74,51 @@
   --font-heading: var(--font-lora);
   --font-body: var(--font-karla);
 
-  --background: #f0eee9;
-  --foreground: #1b1918;
+  --background: #f0ede8;
+  --foreground: #1f1d1a;
 
-  /* Primary — indigo ink */
-  --primary-50: #edeef5;
-  --primary-100: #d0d2e5;
-  --primary-200: #b5b8d2;
-  --primary-300: #9da2c0;
-  --primary-400: #7b82aa;
-  --primary-500: #5c6494;
-  --primary-600: #4a5182;
-  --primary-700: #3a4270;
-  --primary-800: #272d54;
-  --primary-900: #191d3a;
-  --primary-950: #0c0f22;
+  /* Primary — blueprint */
+  --primary-50: #edf2f7;
+  --primary-100: #d2dfec;
+  --primary-200: #afc8de;
+  --primary-300: #7b9bb5;
+  --primary-400: #577a96;
+  --primary-500: #34506a;
+  --primary-600: #284058;
+  --primary-700: #223a4e;
+  --primary-800: #1b2d45;
+  --primary-900: #0e1a2d;
+  --primary-950: #08101c;
 
-  /* Accent — sage */
-  --accent-50: #eef3ef;
-  --accent-100: #dde8df;
-  --accent-200: #c4d8c8;
-  --accent-300: #a8c2ad;
-  --accent-400: #90ae96;
-  --accent-500: #7c9a82;
-  --accent-600: #658470;
-  --accent-700: #4e6e54;
-  --accent-800: #3e5843;
-  --accent-900: #2e4232;
-  --accent-950: #1e2c22;
+  /* Accent — amber */
+  --accent-50: #fcf6e8;
+  --accent-100: #f7eacc;
+  --accent-200: #f0d9a2;
+  --accent-300: #e8be5e;
+  --accent-400: #deac40;
+  --accent-500: #d49a2a;
+  --accent-600: #b88420;
+  --accent-700: #9a6f15;
+  --accent-800: #7c5a10;
+  --accent-900: #5e440c;
+  --accent-950: #3e2d08;
 
   /* Neutral — warm grays */
-  --neutral-50: #f0eee9;
-  --neutral-100: #e4e1da;
-  --neutral-200: #d7d3cc;
-  --neutral-300: #c0bcb4;
-  --neutral-400: #9e9a92;
-  --neutral-500: #85817a;
-  --neutral-600: #6d6963;
-  --neutral-700: #504d48;
-  --neutral-800: #353330;
-  --neutral-900: #1b1918;
-  --neutral-950: #0e0d0c;
+  --neutral-50: #f0ede8;
+  --neutral-100: #e4e0d8;
+  --neutral-200: #d8d3cb;
+  --neutral-300: #c0bab0;
+  --neutral-400: #9e978c;
+  --neutral-500: #858076;
+  --neutral-600: #6d675e;
+  --neutral-700: #524d46;
+  --neutral-800: #383430;
+  --neutral-900: #1f1d1a;
+  --neutral-950: #100f0e;
 
   /* Surfaces */
-  --surface-light: #f0eee9;
-  --surface-dark: #191d3a;
+  --surface-light: #f0ede8;
+  --surface-dark: #0e1a2d;
   --surface-card: #ffffff;
 
   /* Spacing */

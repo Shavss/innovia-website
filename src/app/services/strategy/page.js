@@ -16,36 +16,11 @@ export const metadata = {
 
 const service = services.find((s) => s.slug === 'strategy-growth-change');
 
-const chapters = [
-  {
-    numeral: 'I',
-    title: 'Direction',
-    body: service.longDescription[0],
-  },
-  {
-    numeral: 'II',
-    title: 'Translation',
-    body: service.longDescription[1],
-  },
-  {
-    numeral: 'III',
-    title: 'Execution',
-    body: service.longDescription[2],
-  },
-];
-
-const tableOfContents = [
-  ...chapters.map((ch, i) => ({
-    mark: String(i + 1).padStart(2, '0'),
-    label: ch.title,
-    href: `#chapter-${ch.numeral.toLowerCase()}`,
-  })),
-  {
-    mark: '04',
-    label: 'Inside the engagement',
-    href: '#engagement',
-  },
-];
+const serviceAnchors = service.subServices.map((sub, i) => ({
+  mark: String(i + 1).padStart(2, '0'),
+  label: sub.title,
+  href: `#sub-${slugifyTitle(sub.title)}`,
+}));
 
 const relatedServices = [
   {
@@ -154,7 +129,7 @@ export default function StrategyPage() {
           <AnimatedReveal delay={0.4}>
             <div className="mt-10 flex items-center gap-4 text-[0.65rem] uppercase tracking-[0.28em] text-neutral-400 md:mt-14">
               <span className="h-px w-10 bg-accent-400/70" />
-              A three-chapter read · approx. 4 min
+              Five workstreams · the strategy catalogue
             </div>
           </AnimatedReveal>
         </div>
@@ -165,9 +140,9 @@ export default function StrategyPage() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <aside className="order-2 md:order-1 md:col-span-4">
             <AnimatedReveal delay={0.15}>
-              <EyebrowLabel tone="accent">On this page</EyebrowLabel>
+              <EyebrowLabel tone="accent">Jump to a workstream</EyebrowLabel>
               <ol className="mt-4 space-y-3 border-l border-neutral-300 pl-5">
-                {tableOfContents.map((item) => (
+                {serviceAnchors.map((item) => (
                   <li key={item.label}>
                     <a
                       href={item.href}
@@ -199,43 +174,13 @@ export default function StrategyPage() {
                 We work with firm principals to replace reactive growth with
                 deliberate intent: articulating a vision, structuring the
                 moves that will get you there, and staying close through the
-                change. What follows is how we think about that work.
+                change. Five workstreams sit beneath that work&mdash;each
+                drawn on as the practice needs it.
               </p>
             </AnimatedReveal>
           </div>
         </div>
       </SectionWrapper>
-
-      {/* CHAPTERS */}
-      <section aria-label="Strategy approach" className="bg-surface-light">
-        <div className="mx-auto max-w-[1200px] px-container-x pb-section-y">
-          {chapters.map((ch, i) => (
-            <AnimatedReveal key={ch.numeral} delay={i * 0.06}>
-              <article
-                id={`chapter-${ch.numeral.toLowerCase()}`}
-                className="scroll-mt-24 grid grid-cols-1 gap-6 border-t border-neutral-300 py-12 md:grid-cols-12 md:gap-10 md:py-16"
-              >
-                <header className="md:col-span-4">
-                  <span
-                    aria-hidden="true"
-                    className="block font-heading text-[3.5rem] italic leading-none text-accent-700 md:text-[4.5rem]"
-                  >
-                    {ch.numeral}.
-                  </span>
-                  <h2 className="mt-4 text-primary-950 [font-size:clamp(1.5rem,2.4vw,2rem)] [line-height:1.1] [letter-spacing:-0.01em]">
-                    {ch.title}
-                  </h2>
-                </header>
-                <div className="md:col-span-8">
-                  <p className="max-w-2xl text-base leading-relaxed text-neutral-700 md:text-lg">
-                    {ch.body}
-                  </p>
-                </div>
-              </article>
-            </AnimatedReveal>
-          ))}
-        </div>
-      </section>
 
       {/* PULL QUOTE */}
       <section className="relative overflow-hidden bg-primary-900 text-neutral-100">
@@ -266,25 +211,46 @@ export default function StrategyPage() {
         </div>
       </section>
 
-      {/* ENGAGEMENT / INCLUDES */}
+      {/* CATALOGUE — five workstreams as accordion */}
       <SectionWrapper
         background="light"
         id="engagement"
         className="scroll-mt-24"
       >
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
+        <AnimatedReveal>
+          <div className="flex items-end justify-between gap-6 border-b border-neutral-300 pb-5">
+            <div className="flex items-baseline gap-5">
+              <span
+                aria-hidden="true"
+                className="font-heading text-[2.25rem] italic leading-none text-accent-700 md:text-[3rem]"
+              >
+                §
+              </span>
+              <EyebrowLabel tone="accent" className="!mb-0">
+                The strategy catalogue
+              </EyebrowLabel>
+            </div>
+            <span className="hidden text-[0.65rem] uppercase tracking-[0.28em] text-neutral-500 md:block">
+              Five workstreams
+            </span>
+          </div>
+        </AnimatedReveal>
+
+        <div className="mt-10 grid grid-cols-1 gap-12 md:mt-16 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <AnimatedReveal>
-              <EyebrowLabel tone="accent">§ Inside the engagement</EyebrowLabel>
-              <h2 className="mt-4 text-primary-950 [font-size:clamp(1.75rem,3vw,2.5rem)] [line-height:1.05] [letter-spacing:-0.01em]">
+              <h2 className="text-primary-950 [font-size:clamp(2rem,3.6vw,3rem)] [line-height:1.02] [letter-spacing:-0.015em]">
                 What the work{' '}
                 <span className="italic text-accent-700">actually</span>{' '}
                 involves.
               </h2>
-              <p className="mt-6 max-w-sm text-base leading-relaxed text-neutral-700">
+              <p className="mt-6 max-w-sm text-base leading-relaxed text-neutral-700 md:text-[1.0625rem]">
                 Every engagement is tailored to the firm. Most contain some
                 combination of the following, sequenced to suit where the
                 practice is and what it is trying to reach.
+              </p>
+              <p className="mt-6 max-w-sm text-sm leading-relaxed text-neutral-500">
+                Open any workstream to read what it covers.
               </p>
             </AnimatedReveal>
           </div>

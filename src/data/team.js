@@ -75,6 +75,7 @@ const team = [
     title: 'Consultant',
     slug: 'jamie-black',
     isAssociate: true,
+    isActive: false,
     initials: 'JB',
     image: null,
     shortBio: 'Brand and communications specialist with global architecture experience.',

@@ -19,6 +19,17 @@ function useIsDesktop() {
   return isDesktop;
 }
 
+function useServicesHash() {
+  const [isHash, setIsHash] = useState(false);
+  useEffect(() => {
+    const update = () => setIsHash(window.location.hash === '#services');
+    update();
+    window.addEventListener('hashchange', update);
+    return () => window.removeEventListener('hashchange', update);
+  }, []);
+  return isHash;
+}
+
 const streams = [
   {
     icon: Compass,
@@ -93,8 +104,9 @@ function lerp(start, end, t) {
 function StaticStreams() {
   return (
     <section
+      id="services"
       aria-labelledby="service-streams-heading"
-      className="bg-surface-light"
+      className="scroll-mt-24 bg-surface-light"
     >
       <div className="max-w-[1200px] mx-auto px-container-x py-section-y">
         <div className="max-w-2xl">
@@ -124,11 +136,20 @@ function StaticStreams() {
 export default function ServiceStreams() {
   const reduceMotion = useReducedMotion();
   const isDesktop = useIsDesktop();
+  const hashTargetingServices = useServicesHash();
   const pinRef = useRef(null);
   const progressBarRef = useRef(null);
   const cardRefs = useRef([]);
 
-  const usePinned = isDesktop && !reduceMotion;
+  const usePinned = isDesktop && !reduceMotion && !hashTargetingServices;
+
+  useEffect(() => {
+    if (!hashTargetingServices) return;
+    const el = document.getElementById('services');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [hashTargetingServices]);
 
   useEffect(() => {
     if (!usePinned) return undefined;
@@ -186,9 +207,10 @@ export default function ServiceStreams() {
 
   return (
     <section
+      id="services"
       ref={pinRef}
       aria-labelledby="service-streams-heading"
-      className="relative bg-surface-light"
+      className="relative scroll-mt-24 bg-surface-light"
       style={{ height: '360vh' }}
     >
       <div className="sticky top-0 flex min-h-screen items-center">

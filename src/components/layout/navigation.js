@@ -5,10 +5,10 @@ import Link from 'next/link';
 export const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
+  { label: 'Services', href: '/#services' },
   { label: 'Insights', href: '/insights' },
   { label: 'Careers', href: '/careers' },
-  { label: 'Contacts', href: '/contact' },
+  { label: 'Contact', href: '/contact' },
   ...(process.env.NODE_ENV === 'development'
     ? [{ label: 'Design System', href: '/design-system' }]
     : []),

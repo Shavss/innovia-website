@@ -54,7 +54,7 @@ export default function AboutPreview() {
                 className="absolute left-6 top-10 h-[82%] w-px bg-neutral-300 z-10"
               />
               <Image
-                src="/images/home/rowley.jpg"
+                src="/images/home/rowley_colour.png"
                 alt="Innovia Partners — management consulting for the creative professions"
                 fill
                 className="object-cover pl-10 pt-10 pr-2"
