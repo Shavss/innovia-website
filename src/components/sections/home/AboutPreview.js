@@ -57,6 +57,8 @@ export default function AboutPreview() {
                 src="/images/home/rowley_colour.png"
                 alt="Innovia Partners — management consulting for the creative professions"
                 fill
+                loading="eager"
+                fetchPriority="high"
                 className="object-cover pl-10 pt-10 pr-2"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu } from 'lucide-react';
@@ -64,14 +64,49 @@ export function LangSwitch({ lang, setLang, onDark = false, className = '' }) {
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState('en');
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    const THRESHOLD = 10;
+    const mql = window.matchMedia('(min-width: 768px)');
+
+    const update = () => {
+      const y = window.scrollY;
+      const prev = lastScrollY.current;
+      const delta = y - prev;
+
+      setScrolled(y > 12);
+
+      if (!mql.matches) {
+        setHidden(false);
+      } else if (y < THRESHOLD) {
+        setHidden(false);
+      } else if (Math.abs(delta) >= THRESHOLD) {
+        setHidden(delta > 0);
+      }
+
+      lastScrollY.current = y;
+      ticking.current = false;
+    };
+
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+      window.requestAnimationFrame(update);
+    };
+
+    lastScrollY.current = window.scrollY;
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    mql.addEventListener('change', update);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      mql.removeEventListener('change', update);
+    };
   }, []);
 
   useEffect(() => {
@@ -103,7 +138,12 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 border-b transition-[background-color,backdrop-filter,border-color,box-shadow] duration-300 ${headerBg}`}
+        style={{
+          transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
+          transition:
+            'transform 300ms ease, background-color 300ms, backdrop-filter 300ms, border-color 300ms, box-shadow 300ms',
+        }}
+        className={`fixed top-0 inset-x-0 z-50 border-b will-change-transform ${headerBg}`}
       >
         <div className="max-w-[1200px] mx-auto px-container-x">
           <div className="flex items-center justify-between h-14 md:h-16 gap-6">

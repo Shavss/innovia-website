@@ -2,6 +2,7 @@ import Hero from '@/components/sections/home/Hero';
 import AboutPreview from '@/components/sections/home/AboutPreview';
 import ServiceStreams from '@/components/sections/home/ServiceStreams';
 import CredibilityStrip from '@/components/sections/home/CredibilityStrip';
+import Wayfinding from '@/components/sections/home/Wayfinding';
 import InsightsList from '@/components/sections/home/InsightsList';
 import InsightsCarousel from '@/components/sections/home/InsightsCarousel';
 import ContactCTA from '@/components/sections/home/ContactCTA';
@@ -19,6 +20,7 @@ export default function Home() {
       <AboutPreview />
       <ServiceStreams />
       <CredibilityStrip />
+      <Wayfinding />
       <InsightsCarousel />
       <ContactCTA />
     </main>

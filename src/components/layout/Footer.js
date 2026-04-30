@@ -25,6 +25,7 @@ function LinkedinGlyph({ size = 14 }) {
 
 const exploreLinks = [
   { label: 'Who we are', href: '/about' },
+  { label: 'Our Approach', href: '/approach' },
   { label: 'Strategy', href: '/services/strategy' },
   { label: 'People & Processes', href: '/services/people-processes' },
   {

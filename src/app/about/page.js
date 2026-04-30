@@ -128,7 +128,7 @@ export default function About() {
       <Divider variant="fade" className="mx-container-x opacity-60" />
 
       {/* Team */}
-      <SectionWrapper as="section">
+      <SectionWrapper as="section" id="team" className="scroll-mt-20 md:scroll-mt-24">
         <TeamSection team={team} />
       </SectionWrapper>
 

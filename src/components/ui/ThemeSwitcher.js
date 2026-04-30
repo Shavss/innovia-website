@@ -9,11 +9,11 @@ const groups = [...new Set(Object.values(themes).map((t) => t.group))];
 
 export default function ThemeSwitcher() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('blueprint-and-amber');
+  const [active, setActive] = useState('blueprint-and-amber-stone');
   const panelRef = useRef(null);
 
   useEffect(() => {
-    applyTheme('blueprint-and-amber');
+    applyTheme('blueprint-and-amber-stone');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -54,13 +54,13 @@ export default function ThemeSwitcher() {
 
   function resetTheme() {
     const root = document.documentElement;
-    const vars = themes['blueprint-and-amber'].colors;
+    const vars = themes['blueprint-and-amber-stone'].colors;
 
     Object.keys(vars).forEach((prop) => {
       root.style.removeProperty(prop);
     });
 
-    setActive('blueprint-and-amber');
+    setActive('blueprint-and-amber-stone');
     setOpen(false);
   }
 

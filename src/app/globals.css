@@ -74,8 +74,8 @@
   --font-heading: var(--font-lora);
   --font-body: var(--font-karla);
 
-  --background: #f0ede8;
-  --foreground: #1f1d1a;
+  --background: #faf8f5;
+  --foreground: #1c1917;
 
   /* Primary — blueprint */
   --primary-50: #edf2f7;
@@ -104,20 +104,20 @@
   --accent-950: #3e2d08;
 
   /* Neutral — warm grays */
-  --neutral-50: #f0ede8;
-  --neutral-100: #e4e0d8;
-  --neutral-200: #d8d3cb;
-  --neutral-300: #c0bab0;
-  --neutral-400: #9e978c;
-  --neutral-500: #858076;
-  --neutral-600: #6d675e;
-  --neutral-700: #524d46;
-  --neutral-800: #383430;
-  --neutral-900: #1f1d1a;
-  --neutral-950: #100f0e;
+  --neutral-50: #faf8f5;
+  --neutral-100: #f0ece7;
+  --neutral-200: #e2dcd4;
+  --neutral-300: #cdc4b9;
+  --neutral-400: #ada69c;
+  --neutral-500: #8e8680;
+  --neutral-600: #6e6762;
+  --neutral-700: #514b47;
+  --neutral-800: #363230;
+  --neutral-900: #1c1917;
+  --neutral-950: #0f0e0d;
 
   /* Surfaces */
-  --surface-light: #f0ede8;
+  --surface-light: #faf8f5;
   --surface-dark: #0e1a2d;
   --surface-card: #ffffff;
 
