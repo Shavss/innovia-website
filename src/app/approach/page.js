@@ -55,7 +55,7 @@ const stages = [
 export default function Approach() {
   return (
     <main>
-      {/* HERO — compact, dark, no architectural pattern */}
+      {/* HERO + PRINCIPLES — single dark composition */}
       <SectionWrapper
         background="dark"
         as="section"
@@ -65,76 +65,45 @@ export default function Approach() {
           aria-hidden="true"
           className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-20 bg-accent-700 pointer-events-none"
         />
-        <div className="relative max-w-3xl">
-          <AnimatedReveal>
-            <EyebrowLabel tone="accentOnDark">Our Approach</EyebrowLabel>
-            <h1 className="text-white mt-4 mb-6">
-              How <span className="italic text-accent-300">we</span> work.
-            </h1>
-            <p className="text-primary-200 text-lg leading-relaxed max-w-2xl">
-              Every engagement is a partnership. We bring frameworks, but we
-              never impose them.
-            </p>
-          </AnimatedReveal>
-        </div>
-      </SectionWrapper>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-primary-400 opacity-10 blur-3xl"
+        />
 
-      {/* PRINCIPLES — editorial full-width rows */}
-      <SectionWrapper as="section">
-        <AnimatedReveal>
-          <div className="flex items-end justify-between gap-6 border-b border-neutral-300 pb-5">
-            <div className="flex items-baseline gap-5">
-              <span
-                aria-hidden="true"
-                className="font-heading text-[2.25rem] italic leading-none text-accent-700 md:text-[3rem]"
-              >
-                §
-              </span>
-              <EyebrowLabel tone="accent" className="!mb-0">
-                Four principles
-              </EyebrowLabel>
-            </div>
-            <span className="hidden text-[0.65rem] uppercase tracking-[0.28em] text-neutral-500 md:block">
-              What we believe
-            </span>
+        <div className="relative">
+          {/* Heading */}
+          <div className="max-w-3xl">
+            <AnimatedReveal>
+              <EyebrowLabel tone="accentOnDark">Our Approach</EyebrowLabel>
+              <h1 className="text-white mt-4 mb-6">
+                How <span className="italic text-accent-300">we</span> work.
+              </h1>
+            </AnimatedReveal>
           </div>
-        </AnimatedReveal>
 
-        <ol className="mt-12 md:mt-20">
-          {principles.map((p, i) => {
-            const isLast = i === principles.length - 1;
-            return (
-              <li
-                key={p.title}
-                className={`grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 py-12 md:py-20 ${
-                  isLast ? '' : 'border-b border-neutral-200'
-                }`}
-              >
-                <AnimatedReveal className="md:col-span-7" delay={0}>
-                  <div className="flex items-start gap-5 md:gap-7">
-                    <span
-                      aria-hidden="true"
-                      className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-accent-700 pt-3 md:pt-5"
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h2 className="text-primary-950 [font-size:clamp(1.75rem,3.6vw,3rem)] [line-height:1.05] [letter-spacing:-0.02em]">
-                      {p.title}
-                    </h2>
-                  </div>
-                </AnimatedReveal>
-                <AnimatedReveal
-                  className="md:col-span-5 md:pt-3"
-                  delay={0.12}
-                >
-                  <p className="text-neutral-700 leading-relaxed md:text-[1.0625rem] max-w-prose">
+          {/* Principles grid */}
+          <ol className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10 md:gap-y-14">
+            {principles.map((p, i) => (
+              <AnimatedReveal key={p.title} delay={0.05 + i * 0.08}>
+                <li className="relative pt-7 md:pt-8 border-t border-white/15">
+                  <span
+                    aria-hidden="true"
+                    className="absolute -top-px left-0 h-px w-12 bg-accent-400"
+                  />
+                  <span className="block font-mono text-[0.7rem] uppercase tracking-[0.22em] text-accent-300 mb-3">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h2 className="text-white [font-size:clamp(1.25rem,2vw,1.625rem)] [line-height:1.2] [letter-spacing:-0.01em] mb-3">
+                    {p.title}
+                  </h2>
+                  <p className="text-primary-200 text-sm md:text-[0.95rem] leading-relaxed max-w-prose">
                     {p.body}
                   </p>
-                </AnimatedReveal>
-              </li>
-            );
-          })}
-        </ol>
+                </li>
+              </AnimatedReveal>
+            ))}
+          </ol>
+        </div>
       </SectionWrapper>
 
       {/* HOW AN ENGAGEMENT UNFOLDS — vertical timeline */}
@@ -202,61 +171,25 @@ export default function Approach() {
         </div>
       </SectionWrapper>
 
-      {/* WHAT WE ARE NOT — pull quote */}
-      <section className="relative overflow-hidden bg-primary-900 text-neutral-100">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-accent-700 opacity-15 blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-primary-400 opacity-10 blur-3xl"
-        />
-        <div className="relative mx-auto max-w-[1200px] px-container-x py-section-y">
-          <AnimatedReveal>
-            <div className="relative mx-auto max-w-3xl">
-              <span
-                aria-hidden="true"
-                className="absolute -left-2 -top-10 font-heading text-[7rem] leading-none text-accent-300/40 md:-left-10 md:-top-14 md:text-[9rem]"
-              >
-                &ldquo;
-              </span>
-              <blockquote className="font-heading text-2xl leading-snug text-white md:text-[2.25rem] md:leading-[1.15]">
-                We are not a large consultancy that rotates junior analysts
-                through your engagement. Every conversation is with a senior
-                practitioner who has spent their career in this industry. We
-                don&rsquo;t sell frameworks.{' '}
-                <span className="italic text-accent-300">
-                  We solve problems.
-                </span>{' '}
-                And we don&rsquo;t leave when the work gets uncomfortable.
-              </blockquote>
-              <footer className="mt-10 flex items-center gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-neutral-400">
-                <span className="h-px w-12 bg-accent-400/60" />
-                What we are not
-              </footer>
-            </div>
-          </AnimatedReveal>
-        </div>
-      </section>
-
       {/* CTA */}
-      <SectionWrapper background="light" as="section">
-        <div className="mx-auto max-w-2xl text-center">
+      <SectionWrapper background="dark" as="section" className="relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] rounded-full blur-3xl opacity-10 bg-primary-400 pointer-events-none"
+        />
+        <div className="relative mx-auto max-w-2xl text-center">
           <AnimatedReveal>
-            <EyebrowLabel tone="accent">Begin</EyebrowLabel>
-            <h2 className="mt-4 text-primary-950 [font-size:clamp(1.75rem,3vw,2.5rem)] [line-height:1.1] [letter-spacing:-0.01em]">
+            <EyebrowLabel tone="accentOnDark">Begin</EyebrowLabel>
+            <h2 className="text-white mt-4 mb-6">
               Ready to start?
             </h2>
-            <p className="mt-6 leading-relaxed text-neutral-700">
+            <p className="text-primary-200 mb-10 leading-relaxed">
               A short, frank conversation is often enough to surface the shape
               of what comes next.
             </p>
-            <div className="mt-10 flex justify-center">
-              <Button size="lg" href="/contact">
-                Start a conversation <ArrowRight size={14} />
-              </Button>
-            </div>
+            <Button size="lg" onDark href="/contact">
+              Start a conversation <ArrowRight size={14} />
+            </Button>
           </AnimatedReveal>
         </div>
       </SectionWrapper>
