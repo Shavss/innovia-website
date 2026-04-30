@@ -1,11 +1,11 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { isDarkHeroRoute } from '@/lib/darkHeroRoutes';
 
 export default function MainShell({ children }) {
   const pathname = usePathname();
-  const isHome = pathname === '/';
-  const padding = isHome ? '' : 'pt-14 md:pt-16';
+  const padding = isDarkHeroRoute(pathname) ? '' : 'pt-14 md:pt-16';
 
   return (
     <main

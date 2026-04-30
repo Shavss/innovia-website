@@ -124,12 +124,16 @@
   /* Spacing */
   --section-y: 3rem;
   --container-x: 1.25rem;
+
+  /* Header — fixed nav height. Keep in sync with Header.js (h-14 / md:h-16). */
+  --header-height: 56px;
 }
 
 @media (min-width: 768px) {
   :root {
     --section-y: 5rem;
     --container-x: 2rem;
+    --header-height: 64px;
   }
 }
 

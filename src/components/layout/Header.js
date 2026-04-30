@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu } from 'lucide-react';
 import Navigation from './navigation';
 import MobileMenu from './mobile-menu';
+import { isDarkHeroRoute } from '@/lib/darkHeroRoutes';
 
 export function Logo({ onDark = false, className = '' }) {
   const main = onDark ? 'text-white' : 'text-primary-900';
@@ -71,7 +72,7 @@ export default function Header() {
   const ticking = useRef(false);
 
   useEffect(() => {
-    const THRESHOLD = 10;
+    const THRESHOLD = 2;
     const mql = window.matchMedia('(min-width: 768px)');
 
     const update = () => {
@@ -123,7 +124,7 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  const overHero = pathname === '/' && !scrolled;
+  const overHero = isDarkHeroRoute(pathname) && !scrolled;
 
   const headerBg = overHero
     ? 'bg-transparent backdrop-blur-0 border-transparent'

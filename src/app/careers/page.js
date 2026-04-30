@@ -35,7 +35,11 @@ export default function Careers() {
   return (
     <main>
       {/* Hero */}
-      <SectionWrapper background="dark" as="section" className="relative overflow-hidden">
+      <SectionWrapper
+        background="dark"
+        as="section"
+        className="relative overflow-hidden pt-[var(--header-height)]"
+      >
         <div
           aria-hidden="true"
           className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-20 bg-accent-700 pointer-events-none"

@@ -59,7 +59,7 @@ export default function Approach() {
       <SectionWrapper
         background="dark"
         as="section"
-        className="relative overflow-hidden"
+        className="relative overflow-hidden pt-[var(--header-height)]"
       >
         <div
           aria-hidden="true"
