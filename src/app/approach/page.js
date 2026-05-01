@@ -59,7 +59,8 @@ export default function Approach() {
       <SectionWrapper
         background="dark"
         as="section"
-        className="relative overflow-hidden pt-[var(--header-height)]"
+        className="relative overflow-hidden pt-[var(--header-height)] lg:min-h-screen lg:flex lg:items-center"
+        innerClassName="w-full"
       >
         <div
           aria-hidden="true"
@@ -107,7 +108,12 @@ export default function Approach() {
       </SectionWrapper>
 
       {/* HOW AN ENGAGEMENT UNFOLDS — vertical timeline */}
-      <SectionWrapper as="section" background="light" className="border-t border-neutral-200">
+      <SectionWrapper
+        as="section"
+        background="light"
+        className="border-t border-neutral-200 lg:min-h-screen lg:flex lg:items-center"
+        innerClassName="w-full"
+      >
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <AnimatedReveal>
