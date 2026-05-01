@@ -42,92 +42,92 @@ const stats = [
 export default function About() {
   return (
     <main>
-      {/* Hero */}
-      <SectionWrapper
-        background="dark"
-        as="section"
-        className="relative overflow-hidden pt-[var(--header-height)]"
-      >
-        <div
-          aria-hidden="true"
-          className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-20 bg-accent-700 pointer-events-none"
-        />
-        <div className="relative max-w-3xl">
-          <AnimatedReveal>
-            <EyebrowLabel tone="accentOnDark">About Innovia Partners</EyebrowLabel>
-            <h1 className="text-white mt-4 mb-6">
-              Confidence in change, built over two decades.
-            </h1>
-            <p className="text-primary-200 text-lg leading-relaxed mb-10 max-w-2xl">
-              We are a management consultancy dedicated exclusively to architecture, design and engineering practices.
-              Since 2003, we have helped ambitious firms build the systems, strategies and structures that create lasting value.
-              We understand that for those committed to their craft, the professional journey is also personal.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" onDark href="/contact">
-                Start a conversation
-              </Button>
-              <Button variant="ghost" size="lg" onDark href="/services">
-                Our services <ArrowRight size={14} />
-              </Button>
-            </div>
-          </AnimatedReveal>
-        </div>
-      </SectionWrapper>
-
-      {/* Stats */}
-      <section className="bg-accent-600">
-        <div className="max-w-[1200px] mx-auto px-container-x py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {stats.map(({ value, label }, i) => (
-              <AnimatedReveal key={label} delay={i * 0.08}>
-                <div className="text-center">
-                  <span className="block font-heading text-4xl md:text-5xl text-white mb-1">
-                    {value}
-                  </span>
-                  <span className="text-xs uppercase tracking-[0.18em] font-medium text-white/70">
-                    {label}
-                  </span>
-                </div>
-              </AnimatedReveal>
-            ))}
+      {/* Hero + Stats: one full viewport on desktop, natural flow on mobile */}
+      <div className="lg:h-screen lg:flex lg:flex-col">
+        {/* Hero */}
+        <SectionWrapper
+          background="dark"
+          as="section"
+          className="relative overflow-hidden pt-[var(--header-height)] lg:flex-1"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-20 bg-accent-700 pointer-events-none"
+          />
+          <div className="relative max-w-3xl">
+            <AnimatedReveal>
+              <EyebrowLabel tone="accentOnDark">About Innovia Partners</EyebrowLabel>
+              <h1 className="text-white mt-4 mb-6">
+                Confidence in change, built over two decades.
+              </h1>
+              <p className="text-primary-200 text-lg leading-relaxed mb-10 max-w-2xl">
+                We are a management consultancy dedicated exclusively to architecture, design and engineering practices.
+                Since 2003, we have helped ambitious firms build the systems, strategies and structures that create lasting value.
+                We understand that for those committed to their craft, the professional journey is also personal.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" onDark href="/contact">
+                  Start a conversation
+                </Button>
+                <Button variant="ghost" size="lg" onDark href="/services">
+                  Our services <ArrowRight size={14} />
+                </Button>
+              </div>
+            </AnimatedReveal>
           </div>
-        </div>
-      </section>
+        </SectionWrapper>
 
-      {/* Mission */}
-      <SectionWrapper as="section">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
-          <AnimatedReveal>
-            <EyebrowLabel>Our mission</EyebrowLabel>
-            <h2 className="mt-4 mb-6">You do great work. Why not do more?</h2>
-            <p className="text-neutral-700 leading-relaxed mb-6">
-              Architecture and engineering practices are built on talent, craft, and ambition. Yet
-              too many spend their energy managing the chaos of day-to-day operations rather than
-              realizing their full potential. We exist to change that.
-            </p>
-            <p className="text-neutral-700 leading-relaxed">
-              Innovia Partners works alongside firm leaders to build the financial discipline,
-              organizational clarity, and strategic direction that turns great work into great
-              businesses. Our clients continue to win ambitious projects, attract top talent, and
-              grow sustainably because they have the systems and structures to support it.
-            </p>
-          </AnimatedReveal>
-          <AnimatedReveal delay={0.12}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {values.map(({ label, body }) => (
-                <div
-                  key={label}
-                  className="border-l-2 border-accent-600 pl-5 py-1"
-                >
-                  <h4 className="text-primary-900 mb-2">{label}</h4>
-                  <p className="text-neutral-600 text-sm leading-relaxed">{body}</p>
-                </div>
+        {/* Stats: pinned to the bottom of the viewport on desktop */}
+        <section className="bg-accent-600 lg:flex-shrink-0">
+          <div className="max-w-[1200px] mx-auto px-container-x py-10 md:py-12 lg:py-8 xl:py-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {stats.map(({ value, label }, i) => (
+                <AnimatedReveal key={label} delay={i * 0.08}>
+                  <div className="text-center">
+                    <span className="block font-heading text-4xl md:text-5xl text-white mb-1">
+                      {value}
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.18em] font-medium text-white/70">
+                      {label}
+                    </span>
+                  </div>
+                </AnimatedReveal>
               ))}
             </div>
-          </AnimatedReveal>
-        </div>
-      </SectionWrapper>
+          </div>
+        </section>
+      </div>
+
+        {/* Mission */}
+        <SectionWrapper as="section" className="lg:min-h-screen lg:flex lg:items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 lg:gap-28 xl:gap-32 items-start w-full">
+            <AnimatedReveal>
+              <EyebrowLabel>Our mission</EyebrowLabel>
+              <h2 className="mt-4 mb-8">You do great work. Why not do more?</h2>
+              <p className="text-neutral-700 leading-relaxed mb-6 max-w-prose">
+                Architecture and engineering practices are built on talent, craft, and ambition. Yet
+                too many spend their energy managing the chaos of day-to-day operations rather than
+                realizing their full potential. We exist to change that.
+              </p>
+              <p className="text-neutral-700 leading-relaxed max-w-prose">
+                Innovia Partners works alongside firm leaders to build the financial discipline,
+                organizational clarity, and strategic direction that turns great work into great
+                businesses. Our clients continue to win ambitious projects, attract top talent, and
+                grow sustainably because they have the systems and structures to support it.
+              </p>
+            </AnimatedReveal>
+            <AnimatedReveal delay={0.12}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 xl:gap-10">
+                {values.map(({ label, body }) => (
+                  <div key={label} className="border-l-2 border-accent-600 pl-5 lg:pl-6 py-1">
+                    <h4 className="text-primary-900 mb-2">{label}</h4>
+                    <p className="text-neutral-600 text-sm leading-relaxed">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedReveal>
+          </div>
+        </SectionWrapper>
 
       <Divider variant="fade" className="mx-container-x opacity-60" />
 
