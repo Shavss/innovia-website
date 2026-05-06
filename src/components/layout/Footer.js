@@ -264,7 +264,7 @@ export default function Footer() {
                                 rel: 'noopener noreferrer',
                               }
                             : {})}
-                          className="group inline-flex items-center gap-3 focus-visible:outline-none focus-visible:text-accent-300"
+                          className="group inline-flex items-center gap-3 min-h-[44px] focus-visible:outline-none focus-visible:text-accent-300"
                         >
                           {content}
                         </a>
@@ -285,10 +285,10 @@ export default function Footer() {
             © {year} Innovia Partners Ltd. All rights reserved.
           </small>
           <div className="flex items-center gap-5 text-xs text-primary-300">
-            <Link href="/privacy" className="hover:text-white transition-colors">
+            <Link href="/privacy" className="inline-flex items-center min-h-[44px] py-2 hover:text-white transition-colors">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
+            <Link href="/terms" className="inline-flex items-center min-h-[44px] py-2 hover:text-white transition-colors">
               Terms
             </Link>
           </div>

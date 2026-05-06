@@ -31,7 +31,7 @@ export default function MobileMenu({ open, onClose, pathname, lang, setLang }) {
               type="button"
               onClick={onClose}
               aria-label="Close menu"
-              className="inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-md text-white/80 hover:text-accent-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-300 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-dark transition-colors"
+              className="inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-md text-white/80 hover:text-accent-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-300 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-dark transition-colors"
             >
               <X size={22} strokeWidth={1.5} />
             </button>
